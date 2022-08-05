@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	tools:showIn="navigation_view">
+	<item
+		android:title="Tes Fungsi">
+		<menu>
+			<group
+				android:checkableBehavior="single"
+				android:id="@+id/nav_menu">
+				<item
+					android:id="@+id/nav_tambahMahasiswa"
+					android:icon="@mipmap/ic_launcher_round"
+					android:title="Tambah Mahasiswa" />
+				<item
+					android:id="@+id/nav_uploadGambar"
+					android:icon="@mipmap/ic_launcher_round"
+					android:title="Upload Gambar" />
+				<item
+					android:id="@+id/nav_tampilGambar"
+					android:icon="@mipmap/ic_launcher_round"
+					android:title="Gambar dari Server" />
+				<item
+					android:id="@+id/nav_recyclerView"
+					android:icon="@mipmap/ic_launcher_round"
+					android:title="Recycler View" />
+				<item
+					android:id="@+id/nav_picasso"
+					android:icon="@mipmap/ic_launcher_round"
+					android:title="Picasso" />
+				<item
+					android:id="@+id/nav_register"
+					android:icon="@mipmap/ic_launcher_round"
+					android:title="Register" />
+				<item
+					android:id="@+id/nav_login"
+					android:icon="@mipmap/ic_launcher_round"
+					android:title="Login" />
+				<item
+					android:id="@+id/nav_logout"
+					android:icon="@mipmap/ic_launcher_round"
+					android:title="Logout" />
+			</group>
+		</menu>
+	</item>
+</menu>
