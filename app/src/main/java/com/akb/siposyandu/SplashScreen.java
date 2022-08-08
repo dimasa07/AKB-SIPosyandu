@@ -4,6 +4,7 @@ import android.support.v7.app.*;
 import android.os.*;
 import android.content.*;
 import com.akb.siposyandu.activities.*;
+import com.akb.siposyandu.constants.*;
 
 
 public class SplashScreen extends AppCompatActivity{
@@ -12,10 +13,10 @@ public class SplashScreen extends AppCompatActivity{
 	@Override
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.main);
-		
-		SharedPreferences userPref = getSharedPreferences("UserPref",MODE_PRIVATE);
-		boolean isLoggedIn = userPref.getBoolean("isLoggedIn",true);
+	
+		SharedPreferences pref = getSharedPreferences(ConstantVariables.APP_PREFERENCESS,MODE_PRIVATE);
+		ConstantVariables.initPreferences(pref);
+		boolean isLoggedIn = pref.getBoolean("isLoggedIn",false);
 
 		Intent berandaIntent = new Intent(this,BerandaActivity.class);
 		Intent loginIntent = new Intent(this,LoginActivity.class);

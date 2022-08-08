@@ -4,6 +4,7 @@
 		android:drawable="@drawable/background_gradient"/>
 	<item>
 		<bitmap android:gravity="center"
-			android:src="@drawable/ic_launcher"/>
+		
+			android:src="@drawable/logo_posyandu"/>
 	</item>
 </layer-list>
