@@ -9,12 +9,7 @@
 	app:layout_behavior="@string/appbar_scrolling_view_behavior"
 	tools:context=".activities.BerandaActivity">
 
-	<TextView
-		android:layout_height="wrap_content"
-		android:textAppearance="?android:attr/textAppearanceLarge"
-		android:layout_width="wrap_content"
-		android:text="Data Peserta"/>
-	
+
 <android.support.v7.widget.RecyclerView
 	android:id="@+id/data_peserta_recyclerView"
 	android:layout_width="match_parent"

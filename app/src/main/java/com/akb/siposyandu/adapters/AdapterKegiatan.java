@@ -50,7 +50,8 @@ public class AdapterKegiatan extends RecyclerView.Adapter<AdapterKegiatan.ViewHo
 
 	@Override
 	public void onBindViewHolder(AdapterKegiatan.ViewHolderData holder, final int position){
-		holder.txtNama.setText(dataList.get(position).getNama());
+		holder.txtTitle.setText("Kegiatan "+(position+1));
+		holder.txtNama.setText("Nama Kegiatan : "+dataList.get(position).getNama());
 		holder.txtDeskripsi.setText("Deskripsi : " + dataList.get(position).getDeskripsi());
 		holder.txtTanggal.setText("Tanggal : " + dataList.get(position).getTanggal());
 		holder.btnHapus.setOnClickListener(new Button.OnClickListener(){
@@ -99,19 +100,20 @@ public class AdapterKegiatan extends RecyclerView.Adapter<AdapterKegiatan.ViewHo
 	
 	class ViewHolderData extends RecyclerView.ViewHolder{
 
+		private TextView txtTitle;
 		private TextView txtNama;
 		private TextView txtDeskripsi;
 		private TextView txtTanggal;
-		private Button btnEdit;
+		
 		private Button btnHapus;
 		private CardView card_kegiatan;
 
 		ViewHolderData(View itemView){
 			super(itemView);
+			txtTitle = itemView.findViewById(R.id.card_kegiatan_title);
 			txtNama = itemView.findViewById(R.id.card_kegiatan_nama);
 			txtDeskripsi = itemView.findViewById(R.id.card_kegiatan_deskripsi);
 			txtTanggal = itemView.findViewById(R.id.card_kegiatan_tanggal);
-			btnEdit = itemView.findViewById(R.id.card_kegiatan_edit);
 			btnHapus = itemView.findViewById(R.id.card_kegiatan_hapus);
 			card_kegiatan = itemView.findViewById(R.id.card_kegiatan);
 		}

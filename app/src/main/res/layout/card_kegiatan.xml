@@ -17,7 +17,7 @@
 		android:padding="10dp">
 
 		<TextView
-			android:id="@+id/card_kegiatan_nama"
+			android:id="@+id/card_kegiatan_title"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:gravity="center"
@@ -28,7 +28,12 @@
 			android:layout_width="match_parent"
 			android:layout_height="1dp"
 			android:background="#000000"/>
-
+		<TextView
+			android:id="@+id/card_kegiatan_nama"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:gravity="left"
+			android:textSize="20sp"/>
 		<TextView
 			android:id="@+id/card_kegiatan_deskripsi"
 			android:layout_width="match_parent"
@@ -49,13 +54,7 @@
 			android:orientation="horizontal"
 			android:gravity="right">
 
-			<Button
-				style="?android:attr/buttonStyleSmall"
-				android:layout_height="wrap_content"
-				android:layout_width="100dp"
-				android:text="Edit"
-				android:id="@+id/card_kegiatan_edit"/>
-
+			
 			<Button
 				style="?android:attr/buttonStyleSmall"
 				android:layout_height="wrap_content"

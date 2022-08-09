@@ -6,8 +6,8 @@
 		<string name="title_activity_kategori">Toko Online</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Toko Online</string>
-    <string name="nav_header_subtitle">Kami tidak menjual apa-apa</string>
+    <string name="nav_header_title">SIP</string>
+    <string name="nav_header_subtitle">Sistem Informasi Posyandu</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="content_desc">Your Image</string>
     <string name="noKategori">Semua Kategori</string>

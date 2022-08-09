@@ -45,8 +45,10 @@ public class AdapterPeserta extends RecyclerView.Adapter<AdapterPeserta.ViewHold
 
 	@Override
 	public void onBindViewHolder(AdapterPeserta.ViewHolderData holder, int position){
+		holder.txtTitle.setText("Peserta "+(position+1));
 		holder.txtNama.setText("Nama : "+dataList.get(position).getNama());
-		holder.txtNamaSuami.setText("Nama Suami: "+dataList.get(position).getNamaSuami());
+		holder.txtNik.setText("NIK : "+dataList.get(position).getNik());
+		holder.txtNamaSuami.setText("Nama Suami : "+dataList.get(position).getNamaSuami());
 	}
 
 	@Override
@@ -66,12 +68,16 @@ public class AdapterPeserta extends RecyclerView.Adapter<AdapterPeserta.ViewHold
 
 	class ViewHolderData extends RecyclerView.ViewHolder{
 
+		private TextView txtTitle;
+		private TextView txtNik;
 		private TextView txtNama;
 		private TextView txtNamaSuami;
 		private CardView card_peserta;
 
 		ViewHolderData(View itemView){
 			super(itemView);
+			txtTitle = itemView.findViewById(R.id.card_peserta_title);
+			txtNik = itemView.findViewById(R.id.card_peserta_nik);
 			txtNama = itemView.findViewById(R.id.card_peserta_nama);
 			txtNamaSuami = itemView.findViewById(R.id.card_peserta_nama_suami);
 			card_peserta = itemView.findViewById(R.id.card_peserta);

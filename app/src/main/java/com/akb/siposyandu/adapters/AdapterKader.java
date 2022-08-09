@@ -23,6 +23,11 @@ import com.androidnetworking.common.Priority;
 import com.androidnetworking.interfaces.DownloadProgressListener;
 import com.androidnetworking.interfaces.DownloadListener;
 import com.androidnetworking.error.ANError;
+import android.widget.*;
+import android.app.*;
+import android.content.*;
+import org.json.*;
+import com.androidnetworking.interfaces.*;
 
 public class AdapterKader extends RecyclerView.Adapter<AdapterKader.ViewHolderData> implements View.OnClickListener{
 
@@ -44,9 +49,47 @@ public class AdapterKader extends RecyclerView.Adapter<AdapterKader.ViewHolderDa
 	}
 
 	@Override
-	public void onBindViewHolder(AdapterKader.ViewHolderData holder, int position){
+	public void onBindViewHolder(AdapterKader.ViewHolderData holder, final int position){
+		holder.txtTitle.setText("Kader "+(position+1));
 		holder.txtNama.setText("Nama : "+dataList.get(position).getNama());
+		holder.txtNik.setText("NIK : "+dataList.get(position).getNik());
 		holder.txtStatus.setText("Status : "+dataList.get(position).getStatus());
+		holder.btnHapus.setOnClickListener(new Button.OnClickListener(){
+				@Override
+				public void onClick(View p1){
+					AlertDialog.Builder alert = new AlertDialog.Builder(fragment.getActivity());
+					alert.setTitle("Hapus Kader");
+					alert.setMessage("Yakin ingin hapus ?");
+					alert.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener(){
+							@Override
+							public void onClick(DialogInterface p1, int p2){
+								AndroidNetworking.post(ConstantVariables.API + "hapus_kader.php")
+									.addBodyParameter("nik_kader", dataList.get(position).getNik())
+									.setPriority(Priority.MEDIUM)
+									.build()
+									.getAsJSONObject((new JSONObjectRequestListener(){
+																		 @Override
+																		 public void onResponse(JSONObject p1){
+																			 try{
+																				 String message = p1.getString("message");
+																				 fragment.restoreData();
+																				 Toast.makeText(fragment.activity.getApplicationContext(), message, Toast.LENGTH_LONG).show();
+																			 }catch(JSONException e){
+																				 Toast.makeText(fragment.activity.getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();			
+																			 }
+																		 }
+
+																		 @Override
+																		 public void onError(ANError p1){
+																			 Toast.makeText(fragment.activity.getApplicationContext(), p1.getMessage(), Toast.LENGTH_LONG).show();
+																		 }
+																	 }));
+							}
+						});
+					alert.setNegativeButton(android.R.string.no, null);
+					alert.show();
+				}
+			});
 	}
 
 	@Override
@@ -66,14 +109,21 @@ public class AdapterKader extends RecyclerView.Adapter<AdapterKader.ViewHolderDa
 
 	class ViewHolderData extends RecyclerView.ViewHolder{
 
+		private TextView txtTitle;
 		private TextView txtNama;
+		private TextView txtNik;
 		private TextView txtStatus;
+		private Button btnEdit,btnHapus;
 		private CardView card_kader;
 
 		ViewHolderData(View itemView){
 			super(itemView);
+			txtTitle = itemView.findViewById(R.id.card_kader_title);
 			txtNama = itemView.findViewById(R.id.card_kader_nama);
+			txtNik = itemView.findViewById(R.id.card_kader_nik);
 			txtStatus = itemView.findViewById(R.id.card_kader_status);
+			btnHapus = itemView.findViewById(R.id.card_kader_hapus);
+			btnEdit = itemView.findViewById(R.id.card_kader_edit);
 			card_kader = itemView.findViewById(R.id.card_kader);
 		}
 	}

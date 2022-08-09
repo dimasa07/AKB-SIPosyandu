@@ -18,15 +18,17 @@ import com.androidnetworking.interfaces.*;
 import org.json.*;
 import android.widget.*;
 import com.androidnetworking.error.*;
+import android.support.design.widget.*;
+import com.akb.siposyandu.activities.*;
 
 public class DataKaderFragment extends Fragment
 {
-	public Activity activity;
+	public BerandaActivity activity;
 	public RecyclerView recyclerView;
 	private List<Kader> kader;
 	AdapterKader adapterKader;
 	
-	public DataKaderFragment(Activity activity){
+	public DataKaderFragment(BerandaActivity activity){
 		this.activity = activity;
 	}
 
@@ -46,6 +48,15 @@ public class DataKaderFragment extends Fragment
 		recyclerView.setLayoutManager(lm);
 		adapterKader = new AdapterKader(this, kader);
 		recyclerView.setAdapter(adapterKader);
+		
+		FloatingActionButton fab = view.findViewById(R.id.kader_tambah);
+		fab.setOnClickListener(new View.OnClickListener(){
+
+				@Override
+				public void onClick(View p1){
+					activity.setFragment(TambahKaderFragment.class);
+				}
+			});
 	}
 
 	@Override
@@ -54,7 +65,8 @@ public class DataKaderFragment extends Fragment
 		restoreData();
 	}
 	
-	private void restoreData(){
+	public void restoreData(){
+		kader.clear();
 		AndroidNetworking.get(ConstantVariables.API+"data_kader.php")
 			.setPriority(Priority.MEDIUM)
 			.build()
