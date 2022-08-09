@@ -15,12 +15,10 @@ public class LoginActivity extends AppCompatActivity implements Button.OnClickLi
 
 	private EditText edtUsername, edtPassword;
 	private Button btnLogin, btnPendaftaran;
-	private SharedPreferences pref;
 	private LoginService loginService;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState){
-		// TODO: Implement this method
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.login);
 
@@ -28,7 +26,6 @@ public class LoginActivity extends AppCompatActivity implements Button.OnClickLi
 		edtPassword = findViewById(R.id.login_editText_password);
 		btnLogin = findViewById(R.id.login_button_login);
 		btnPendaftaran = findViewById(R.id.login_button_pendaftaran);
-		pref = getSharedPreferences(ConstantVariables.APP_PREFERENCESS, MODE_PRIVATE);
 		loginService = new LoginService(this);
 		btnLogin.setOnClickListener(this);
 		btnPendaftaran.setOnClickListener(this);
@@ -36,7 +33,7 @@ public class LoginActivity extends AppCompatActivity implements Button.OnClickLi
 		AndroidNetworking.initialize(getApplicationContext());
 
 	}
-
+	
 	@Override
 	public void onClick(View v){
 		switch(v.getId()){
@@ -49,6 +46,22 @@ public class LoginActivity extends AppCompatActivity implements Button.OnClickLi
 		}
 	}
 
+	@Override
+	public void onBackPressed(){
+		AlertDialog.Builder alert = new AlertDialog.Builder(this);
+		alert.setTitle("Keluar Aplikasi");
+		alert.setMessage("Yakin ingin keluar ?");
+		alert.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener(){
+
+				@Override
+				public void onClick(DialogInterface p1, int p2){
+					keluar();
+				}
+			});
+		alert.setNegativeButton(android.R.string.no,null);
+		alert.show();
+	}
+	
 	public void login(){
 		String username = edtUsername.getText().toString();
 		String password = edtPassword.getText().toString();
@@ -59,20 +72,27 @@ public class LoginActivity extends AppCompatActivity implements Button.OnClickLi
 			Level level = null;
 			if(username.equals("admin") && username.equals("admin")){
 				level = Level.ADMIN;
-				SharedPreferences.Editor editPref = pref.edit();
+				SharedPreferences.Editor editPref = ConstantVariables.EDIT_PREF;
 				editPref.putString("username", username);
 				editPref.putString("level", level.toString());
 				editPref.commit();
-				Log.d(ConstantVariables.LOG_TAG, "Login sukses !");
-				startActivity(new Intent(this, BerandaActivity.class));
-				finish();
+				suksesLogin();
 			}else{
 				loginService.login(username,password);
 			}
 		}
 	}
+	
+	public void suksesLogin(){
+		startActivity(new Intent(this, BerandaActivity.class));
+		finish();
+	}
 
 	public void pendaftaran(){
 
+	}
+	
+	public void keluar(){
+		super.onBackPressed();
 	}
 }

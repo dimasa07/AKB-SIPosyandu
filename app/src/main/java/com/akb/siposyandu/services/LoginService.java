@@ -21,13 +21,39 @@ public class LoginService implements JSONObjectRequestListener,JSONArrayRequestL
 	}
 
 	@Override
-	public void onResponse(JSONArray p1){
-		// TODO: Implement this method
+	public void onResponse(JSONArray ja){
 	}
 
 	@Override
-	public void onResponse(JSONObject jsonObject){
-		// TODO: Implement this method
+	public void onResponse(JSONObject jo){
+		String request ="";
+		try{
+			request = jo.getString("request");
+		}catch(JSONException e){
+			Toast.makeText(activity.getApplicationContext(),e.getMessage(),Toast.LENGTH_LONG).show();
+		}
+		
+		switch(request){
+			case "login":loginResponse(jo);break;
+		}
+	}
+
+	@Override
+	public void onError(ANError e){
+		Toast.makeText(activity.getApplicationContext(),e.getMessage(),Toast.LENGTH_LONG).show();
+	}
+	
+	
+	public void login(String username, String password){
+		AndroidNetworking.post(ConstantVariables.API+"login.php")
+		.addBodyParameter("username",username)
+		.addBodyParameter("password",password)
+		.setPriority(Priority.MEDIUM)
+		.build()
+		.getAsJSONObject(this);
+	}
+	
+	public void loginResponse(JSONObject jo){
 		String status = "";
 		String message = "";
 		String username ="";
@@ -35,43 +61,25 @@ public class LoginService implements JSONObjectRequestListener,JSONArrayRequestL
 		String level = "";
 
 		try{
-			status = jsonObject.getString("status");
-			message = jsonObject.getString("message");
+			status = jo.getString("status");
+			message = jo.getString("message");
 			if(status.equals("sukses")){
-				JSONObject value = jsonObject.getJSONObject("value");
+				JSONObject value = jo.getJSONObject("value");
 				username = value.getString("username");
 				password = value.getString("password");
 				level = value.getString("level");
-				SharedPreferences.Editor editPref = ConstantVariables.appEdit;
+				SharedPreferences.Editor editPref = ConstantVariables.EDIT_PREF;
 				editPref.putString("username",username);
 				editPref.putString("password",password);
 				editPref.putString("level",level);
 				editPref.commit();
-				activity.startActivity(
-					new Intent(activity.getApplicationContext(),BerandaActivity.class));
-				activity.finish();
+				activity.suksesLogin();
 			}else{
 				Toast.makeText(activity.getApplicationContext(),message,Toast.LENGTH_LONG).show();
 			}
 		}catch(JSONException e){
 			Toast.makeText(activity.getApplicationContext(),e.getMessage(),Toast.LENGTH_LONG).show();
 		}
-	}
-
-	@Override
-	public void onError(ANError p1){
-		// TODO: Implement this method
-	}
-	
-	
-	public void login(String username, String password){
-		Log.d(ConstantVariables.LOG_TAG,"Sedang login...");
-		AndroidNetworking.post(ConstantVariables.API+"login.php")
-		.addBodyParameter("username",username)
-		.addBodyParameter("password",password)
-		.setPriority(Priority.MEDIUM)
-		.build()
-		.getAsJSONObject(this);
 	}
 
 }

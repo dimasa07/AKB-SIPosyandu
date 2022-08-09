@@ -16,11 +16,13 @@ public class SplashScreen extends AppCompatActivity{
 	
 		SharedPreferences pref = getSharedPreferences(ConstantVariables.APP_PREFERENCESS,MODE_PRIVATE);
 		ConstantVariables.initPreferences(pref);
-		boolean isLoggedIn = pref.getBoolean("isLoggedIn",false);
+		
+		String username = pref.getString("username","guest");
 
 		Intent berandaIntent = new Intent(this,BerandaActivity.class);
 		Intent loginIntent = new Intent(this,LoginActivity.class);
-		if(isLoggedIn){
+		
+		if(!username.equals("guest")){
 			start(berandaIntent);
 		}else{
 			start(loginIntent);
@@ -32,7 +34,6 @@ public class SplashScreen extends AppCompatActivity{
 
 				@Override
 				public void run(){
-					// TODO: Implement this method
 					startActivity(intent);
 					finish();
 				}
