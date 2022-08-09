@@ -58,19 +58,38 @@ public class DataPesertaFragment extends Fragment
 		.setPriority(Priority.MEDIUM)
 		.build()
 			.getAsJSONArray(new JSONArrayRequestListener(){
-
 				@Override
 				public void onResponse(JSONArray p1){
 					for(int i=0; i<p1.length();i++){
+						String nik = "";
 						String nama = "";
 						String namaSuami = "";
+						String status = "";
+						String tanggalLahir = "";
+						String noTelepon = "";
+						String golDarah = "";
+						String alamat = "";
 						try{
+							nik = p1.getJSONObject(i).getString("nik");
 							nama = p1.getJSONObject(i).getString("nama");
 							namaSuami = p1.getJSONObject(i).getString("nama_suami");
-						}catch(JSONException e){}
+							status = p1.getJSONObject(i).getString("status");
+							tanggalLahir = p1.getJSONObject(i).getString("tanggal_lahir");
+							golDarah = p1.getJSONObject(i).getString("gol_darah");
+							alamat = p1.getJSONObject(i).getString("alamat");
+							noTelepon = p1.getJSONObject(i).getString("no_telepon");
+						}catch(JSONException e){
+							Toast.makeText(activity.getApplicationContext(),e.getMessage(),Toast.LENGTH_LONG).show();
+						}
 						Peserta p = new Peserta();
+						p.setNik(nik);
 						p.setNama(nama);
 						p.setNamaSuami(namaSuami);
+						p.setStatus(status);
+						p.setGolDarah(golDarah);
+						p.setNoTelepon(noTelepon);
+						p.setAlamat(alamat);
+						p.setTanggalLahir(tanggalLahir);
 						peserta.add(p);
 					}
 					adapterPeserta.notifyDataSetChanged();
@@ -79,7 +98,6 @@ public class DataPesertaFragment extends Fragment
 				@Override
 				public void onError(ANError p1){
 					Toast.makeText(activity.getApplicationContext(),p1.getMessage(),Toast.LENGTH_LONG).show();
-					
 				}
 			});
 	}

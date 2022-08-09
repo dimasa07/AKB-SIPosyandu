@@ -24,29 +24,29 @@ import com.androidnetworking.interfaces.DownloadProgressListener;
 import com.androidnetworking.interfaces.DownloadListener;
 import com.androidnetworking.error.ANError;
 
-public class AdapterPeserta extends RecyclerView.Adapter<AdapterPeserta.ViewHolderData> implements View.OnClickListener{
+public class AdapterKader extends RecyclerView.Adapter<AdapterKader.ViewHolderData> implements View.OnClickListener{
 
-	private List<Peserta> dataList;
-	DataPesertaFragment fragment;
+	private List<Kader> dataList;
+	DataKaderFragment fragment;
 
-	public AdapterPeserta(DataPesertaFragment fragment,List<Peserta> dataList){
+	public AdapterKader(DataKaderFragment fragment,List<Kader> dataList){
 		this.dataList = dataList;
 		this.fragment = fragment;
-		Log.d(getClass().toString(),"Peserta list: "+dataList.size());
+		Log.d(getClass().toString(),"Kader list: "+dataList.size());
 	}
 
 	@Override
-	public AdapterPeserta.ViewHolderData onCreateViewHolder(ViewGroup p1, int p2){
+	public AdapterKader.ViewHolderData onCreateViewHolder(ViewGroup p1, int p2){
 		LayoutInflater inflater = LayoutInflater.from(p1.getContext());
-		View view = inflater.inflate(R.layout.card_peserta,p1,false);
+		View view = inflater.inflate(R.layout.card_kader,p1,false);
 		view.setOnClickListener(this);
 		return new ViewHolderData(view);
 	}
 
 	@Override
-	public void onBindViewHolder(AdapterPeserta.ViewHolderData holder, int position){
+	public void onBindViewHolder(AdapterKader.ViewHolderData holder, int position){
 		holder.txtNama.setText("Nama : "+dataList.get(position).getNama());
-		holder.txtNamaSuami.setText("Nama Suami: "+dataList.get(position).getNamaSuami());
+		holder.txtStatus.setText("Status : "+dataList.get(position).getStatus());
 	}
 
 	@Override
@@ -61,20 +61,20 @@ public class AdapterPeserta extends RecyclerView.Adapter<AdapterPeserta.ViewHold
 			fragment.activity.getApplicationContext(),
 			dataList.get(itemPosition).getNama(),Toast.LENGTH_SHORT
 		).show();
-		
+
 	}
 
 	class ViewHolderData extends RecyclerView.ViewHolder{
 
 		private TextView txtNama;
-		private TextView txtNamaSuami;
-		private CardView card_peserta;
+		private TextView txtStatus;
+		private CardView card_kader;
 
 		ViewHolderData(View itemView){
 			super(itemView);
-			txtNama = itemView.findViewById(R.id.card_peserta_nama);
-			txtNamaSuami = itemView.findViewById(R.id.card_peserta_nama_suami);
-			card_peserta = itemView.findViewById(R.id.card_peserta);
+			txtNama = itemView.findViewById(R.id.card_kader_nama);
+			txtStatus = itemView.findViewById(R.id.card_kader_status);
+			card_kader = itemView.findViewById(R.id.card_kader);
 		}
 	}
 }

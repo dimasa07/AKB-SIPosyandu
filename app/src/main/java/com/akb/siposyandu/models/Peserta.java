@@ -2,12 +2,30 @@ package com.akb.siposyandu.models;
 
 public class Peserta
 {
+	private String nik;
 	private String nama;
 	private String namaSuami;
 	private String status;
 	private String tanggalLahir;
 	private String golDarah;
+	private String noTelepon;
 	private String alamat;
+
+	public void setNoTelepon(String noTelepon){
+		this.noTelepon = noTelepon;
+	}
+
+	public String getNoTelepon(){
+		return noTelepon;
+	}
+
+	public void setNik(String nik){
+		this.nik = nik;
+	}
+
+	public String getNik(){
+		return nik;
+	}
 	
 	public void setNama(String nama){
 		this.nama = nama;
