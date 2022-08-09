@@ -18,15 +18,17 @@ import com.androidnetworking.interfaces.*;
 import org.json.*;
 import android.widget.*;
 import com.androidnetworking.error.*;
+import android.support.design.widget.*;
+import com.akb.siposyandu.activities.*;
 
 public class KegiatanFragment extends Fragment
 {
-	public Activity activity;
+	public BerandaActivity activity;
 	public RecyclerView recyclerView;
 	private List<Kegiatan> kegiatan;
 	AdapterKegiatan adapterKegiatan;
 	
-	public KegiatanFragment(Activity activity){
+	public KegiatanFragment(BerandaActivity activity){
 		this.activity = activity;
 	}
 
@@ -45,6 +47,15 @@ public class KegiatanFragment extends Fragment
 		recyclerView.setLayoutManager(lm);
 		adapterKegiatan = new AdapterKegiatan(this, kegiatan);
 		recyclerView.setAdapter(adapterKegiatan);
+		
+		FloatingActionButton fab = view.findViewById(R.id.kegiatan_tambah);
+		fab.setOnClickListener(new View.OnClickListener(){
+
+				@Override
+				public void onClick(View p1){
+					activity.setFragment(TambahKegiatanFragment.class);
+				}
+			});
 	}
 
 	@Override

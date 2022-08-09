@@ -30,7 +30,6 @@ import android.content.*;
 
 public class AdapterKegiatan extends RecyclerView.Adapter<AdapterKegiatan.ViewHolderData> 
 implements View.OnClickListener,View.OnLongClickListener{
-
 	private List<Kegiatan> dataList;
 	KegiatanFragment fragment;
 

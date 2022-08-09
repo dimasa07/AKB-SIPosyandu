@@ -115,18 +115,12 @@ implements NavigationView.OnNavigationItemSelectedListener{
 		}
 		
 		if(key != null){
-			FragmentManager fm = getSupportFragmentManager();
-			fm.beginTransaction()
-				.replace(R.id.beranda_frameLayout,fragments.get(key))
-				.commit();
+			setFragment(key);
 		}
 		item.setChecked(true);
 		drawer.closeDrawers();
 		return true;
 	}
-
-	
-	
 
 	@Override
 	public void onBackPressed(){
@@ -153,10 +147,19 @@ implements NavigationView.OnNavigationItemSelectedListener{
 		DataKaderFragment dataKaderFragment = new DataKaderFragment(this);
 		DataPesertaFragment dataPesertaFragment = new DataPesertaFragment(this);
 		KegiatanFragment kegiatanFragment = new KegiatanFragment(this);
+		TambahKegiatanFragment tambahKegiatanFragment = new TambahKegiatanFragment(this);
 		
 		fragments.put(DataKaderFragment.class, dataKaderFragment);
 		fragments.put(DataPesertaFragment.class, dataPesertaFragment);
 		fragments.put(KegiatanFragment.class, kegiatanFragment);
+		fragments.put(TambahKegiatanFragment.class, tambahKegiatanFragment);
+	}
+	
+	public void setFragment(Class<? extends Fragment> key){
+		FragmentManager fm = getSupportFragmentManager();
+		fm.beginTransaction()
+			.replace(R.id.beranda_frameLayout,fragments.get(key))
+			.commit();
 	}
 
 	public void logout(){
