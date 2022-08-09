@@ -21,9 +21,8 @@ import com.androidnetworking.error.*;
 import android.support.design.widget.*;
 import com.akb.siposyandu.activities.*;
 
-public class TambahKegiatanFragment extends Fragment implements View.OnClickListener
-{
-	
+public class TambahKegiatanFragment extends Fragment implements View.OnClickListener{
+
 	public BerandaActivity activity;
 	EditText editNamaKegiatan, editDeskripsiKegiatan;
 	DatePicker dpTanggalKegiatan;
@@ -34,7 +33,7 @@ public class TambahKegiatanFragment extends Fragment implements View.OnClickList
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
-		return inflater.inflate(R.layout.fragment_tambah_kegiatan,container,false);
+		return inflater.inflate(R.layout.fragment_tambah_kegiatan, container, false);
 	}
 
 	@Override
@@ -45,10 +44,10 @@ public class TambahKegiatanFragment extends Fragment implements View.OnClickList
 		editNamaKegiatan = view.findViewById(R.id.tambah_kegitan_edt_nama);
 		editDeskripsiKegiatan = view.findViewById(R.id.tambah_kegiatan_edt_deskripsi);
 		dpTanggalKegiatan = view.findViewById(R.id.tambah_kegiatan_date_picker);
-		
+
 		btnTambah.setOnClickListener(this);
 		btnKembali.setOnClickListener(this);
-		
+
 	}
 
 	@Override
@@ -66,11 +65,11 @@ public class TambahKegiatanFragment extends Fragment implements View.OnClickList
 				int tahun = dpTanggalKegiatan.getYear();
 				int bulan = dpTanggalKegiatan.getMonth();
 				int tanggal = dpTanggalKegiatan.getDayOfMonth();
-				String tanggalKegiatan = tanggal+"/"+bulan+"/"+tahun;
-				if(namaKegiatan.isEmpty()||deskripsiKegiatan.isEmpty()){
-					Toast.makeText(activity.getApplicationContext(),"Data tidak boleh kosong",Toast.LENGTH_LONG).show();
+				String tanggalKegiatan = tanggal + "/" + bulan + "/" + tahun;
+				if(namaKegiatan.isEmpty() || deskripsiKegiatan.isEmpty()){
+					Toast.makeText(activity.getApplicationContext(), "Data tidak boleh kosong", Toast.LENGTH_LONG).show();
 				}else{
-					tambah(namaKegiatan,deskripsiKegiatan,tanggalKegiatan);
+					tambah(namaKegiatan, deskripsiKegiatan, tanggalKegiatan);
 				}
 				break;
 			case R.id.tambah_kegiatan_btn_kembali:
@@ -78,14 +77,14 @@ public class TambahKegiatanFragment extends Fragment implements View.OnClickList
 				break;
 		}
 	}
-	
+
 	public void tambah(String nama, String deskrpsi, String tanggal){
-		AndroidNetworking.post(ConstantVariables.API+"tambah_kegiatan.php")
-		.addBodyParameter("nama",nama)
-		.addBodyParameter("deskripsi",deskrpsi)
-		.addBodyParameter("tanggal",tanggal)
-		.setPriority(Priority.MEDIUM)
-		.build()
+		AndroidNetworking.post(ConstantVariables.API + "tambah_kegiatan.php")
+			.addBodyParameter("nama", nama)
+			.addBodyParameter("deskripsi", deskrpsi)
+			.addBodyParameter("tanggal", tanggal)
+			.setPriority(Priority.MEDIUM)
+			.build()
 			.getAsJSONObject(new JSONObjectRequestListener(){
 
 				@Override
@@ -93,20 +92,20 @@ public class TambahKegiatanFragment extends Fragment implements View.OnClickList
 					try{
 						int value = p1.getInt("value");
 						String message = p1.getString("message");
-						
-						Toast.makeText(activity.getApplicationContext(),message,Toast.LENGTH_LONG).show();
-						if(value==1){
+
+						Toast.makeText(activity.getApplicationContext(), message, Toast.LENGTH_LONG).show();
+						if(value == 1){
 							activity.setFragment(KegiatanFragment.class);
 						}
 					}catch(JSONException e){
-						Toast.makeText(activity.getApplicationContext(),e.getMessage(),Toast.LENGTH_LONG).show();
+						Toast.makeText(activity.getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
 					}
 				}
 
 				@Override
 				public void onError(ANError e){
-					Toast.makeText(activity.getApplicationContext(),e.getMessage(),Toast.LENGTH_LONG).show();
-				
+					Toast.makeText(activity.getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+
 				}
 			});
 	}

@@ -7,7 +7,7 @@
 	<LinearLayout
 		android:orientation="vertical"
 		android:gravity="top|center"
-		android:padding="50dp"
+		android:padding="10dp"
 		android:layout_centerHorizontal="true"
 		android:layout_height="wrap_content"
 		android:layout_width="match_parent">
@@ -16,13 +16,13 @@
 			android:text="Tambah Kegiatan"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:textSize="35sp"
+			android:textSize="25sp"
 			android:textStyle="bold"/>
 
 		<TableLayout
 			android:layout_height="wrap_content"
 			android:layout_width="match_parent"
-			android:layout_marginTop="50dp"
+			android:layout_marginTop="25dp"
 			android:layout_gravity="left">
 
 			<TableRow
@@ -32,7 +32,7 @@
 
 				<TextView
 					android:layout_height="wrap_content"
-					android:textAppearance="?android:attr/textAppearanceMedium"
+					android:textAppearance="?android:attr/textAppearanceSmall"
 					android:layout_width="wrap_content"
 					android:text="Nama Kegiatan"/>
 
@@ -45,7 +45,7 @@
 				<EditText
 					android:layout_height="wrap_content"
 					android:layout_width="wrap_content"
-					android:ems="17"
+					android:ems="15"
 					android:id="@+id/tambah_kegitan_edt_nama"/>
 
 			</TableRow>
@@ -57,7 +57,7 @@
 
 				<TextView
 					android:layout_height="wrap_content"
-					android:textAppearance="?android:attr/textAppearanceMedium"
+					android:textAppearance="?android:attr/textAppearanceSmall"
 					android:layout_width="wrap_content"
 					android:text="Deskripsi Kegiatan"/>
 
@@ -71,7 +71,7 @@
 					android:layout_height="wrap_content"
 					android:inputType="textMultiLine"
 					android:layout_width="wrap_content"
-					android:ems="10"
+					android:ems="15"
 					android:id="@+id/tambah_kegiatan_edt_deskripsi"/>
 
 			</TableRow>
@@ -83,7 +83,7 @@
 
 				<TextView
 					android:layout_height="wrap_content"
-					android:textAppearance="?android:attr/textAppearanceMedium"
+					android:textAppearance="?android:attr/textAppearanceSmall"
 					android:layout_width="wrap_content"
 					android:text="Tanggal Kegiatan"/>
 
@@ -93,10 +93,26 @@
 					android:layout_width="wrap_content"
 					android:text=" : "/>
 
+				<EditText
+					android:layout_height="wrap_content"
+					android:inputType="textMultiLine"
+					android:layout_width="wrap_content"
+					android:ems="15"
+					android:visibility="invisible"/>
+
+			</TableRow>
+
+			<TableRow
+				android:layout_height="wrap_content"
+				android:layout_width="wrap_content"
+				android:gravity="center">
+
 				<DatePicker
 					android:layout_height="wrap_content"
+					android:layout_span="3"
 					android:layout_width="wrap_content"
-					android:id="@+id/tambah_kegiatan_date_picker"/>
+					android:id="@+id/tambah_kegiatan_date_picker"
+					android:layout_gravity="center"/>
 
 			</TableRow>
 
@@ -106,7 +122,6 @@
 			android:layout_height="wrap_content"
 			android:layout_width="match_parent"
 			android:text="Tambah"
-			android:layout_marginTop="50dp"
 			android:id="@+id/tambah_kegiatan_btn_tambah"/>
 
 	</LinearLayout>
