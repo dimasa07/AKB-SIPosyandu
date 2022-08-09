@@ -4,12 +4,12 @@ import com.akb.siposyandu.constants.*;
 public class User
 {
 	private String username;
-	private Level level;
+	private String level;
 	private String nama;
 	
 	public User(){}
 	
-	public User(String username, String nama, Level level){
+	public User(String username, String nama, String level){
 		this.username = username;
 		this.nama = nama;
 		this.level = level;
@@ -31,11 +31,11 @@ public class User
 		return username;
 	}
 
-	public void setLevel(Level level){
+	public void setLevel(String level){
 		this.level = level;
 	}
 
-	public Level getLevel(){
+	public String getLevel(){
 		return level;
 	}
 }

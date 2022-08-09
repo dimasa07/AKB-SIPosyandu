@@ -1,6 +1,8 @@
 package com.akb.siposyandu.constants;
 
-public enum Level
+public interface Level
 {
-	ADMIN, KADER, PESERTA
+	public String ADMIN = "ADMIN";
+	public String KADER = "KADER";
+	public String PESERTA = "PESERTA";
 }

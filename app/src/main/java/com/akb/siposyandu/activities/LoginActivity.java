@@ -69,7 +69,7 @@ public class LoginActivity extends AppCompatActivity implements Button.OnClickLi
 		if(username.isEmpty() || password.isEmpty()){
 			Toast.makeText(this, "Username dan Password tidak boleh kosong", Toast.LENGTH_LONG).show();
 		}else{
-			Level level = null;
+			String level = "";
 			if(username.equals("admin") && username.equals("admin")){
 				level = Level.ADMIN;
 				SharedPreferences.Editor editPref = ConstantVariables.EDIT_PREF;

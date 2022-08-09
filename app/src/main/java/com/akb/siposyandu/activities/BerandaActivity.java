@@ -1,30 +1,39 @@
 package com.akb.siposyandu.activities;
 
-import android.os.*;
-import android.support.v7.app.*;
-import android.support.v7.widget.*;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.widget.Toolbar;
 import android.widget.Toast;
-import com.akb.siposyandu.*;
+import com.akb.siposyandu.R;
 
 import android.support.v7.widget.Toolbar;
-import android.support.v4.widget.*;
+import android.support.v4.widget.DrawerLayout;
 import com.akb.siposyandu.R;
-import android.view.*;
-import com.androidnetworking.*;
-import com.androidnetworking.common.*;
-import com.androidnetworking.interfaces.*;
-import org.json.*;
-import com.androidnetworking.error.*;
-import android.content.*;
+import android.view.MenuItem;
+import android.content.SharedPreferences;
 import com.akb.siposyandu.constants.*;
-import android.support.v4.view.*;
+import android.support.v4.view.GravityCompat;
+import android.support.design.widget.NavigationView;
+import java.util.HashMap;
+import android.support.v4.app.Fragment;
+import com.akb.siposyandu.fragments.*;
+import android.support.v4.app.ActivityCompat;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.app.AlertDialog;
+import android.support.v4.app.FragmentManager;
+import android.content.DialogInterface;
+import android.content.Intent;
 
 
-public class BerandaActivity extends AppCompatActivity{
+public class BerandaActivity extends AppCompatActivity 
+implements NavigationView.OnNavigationItemSelectedListener{
 
 	private SharedPreferences pref;
 	private SharedPreferences.Editor editPref;
 	private DrawerLayout drawer;
+	public HashMap<Class<? extends Fragment>, Fragment> fragments;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState){
@@ -45,6 +54,18 @@ public class BerandaActivity extends AppCompatActivity{
 		drawer.addDrawerListener(toggle);
 		toggle.syncState();
 			
+		NavigationView navView = findViewById(R.id.nav_view);
+		navView.setNavigationItemSelectedListener(this);
+		navView.getMenu().clear();
+		if(level.equals(Level.ADMIN)){
+			navView.inflateMenu(R.menu.drawer_menu_admin);
+		}else if(level.equals(Level.KADER)){
+			navView.inflateMenu(R.menu.drawer_menu_kader);
+		}else if(level.equals(Level.PESERTA)){
+			navView.inflateMenu(R.menu.drawer_menu_peserta);
+		}
+		
+		inisialisasiFragments();
 	}
 
 	@Override
@@ -79,6 +100,35 @@ public class BerandaActivity extends AppCompatActivity{
 	}
 
 	@Override
+	public boolean onNavigationItemSelected(MenuItem item){
+		Class<? extends Fragment> key = null;
+		switch(item.getItemId()){
+			case R.id.nav_admin_dataKader:
+				key = DataKaderFragment.class;
+				break;
+			case R.id.nav_admin_dataPerserta:
+				key = DataPesertaFragment.class;
+				break;
+			case R.id.nav_admin_kegiatan:
+				key = KegiatanFragment.class;
+				break;
+		}
+		
+		if(key != null){
+			FragmentManager fm = getSupportFragmentManager();
+			fm.beginTransaction()
+				.replace(R.id.beranda_frameLayout,fragments.get(key))
+				.commit();
+		}
+		item.setChecked(true);
+		drawer.closeDrawers();
+		return true;
+	}
+
+	
+	
+
+	@Override
 	public void onBackPressed(){
 		if(drawer.isDrawerOpen(GravityCompat.START)){
 			drawer.closeDrawer(GravityCompat.START);
@@ -96,6 +146,17 @@ public class BerandaActivity extends AppCompatActivity{
 			alert.setNegativeButton(android.R.string.no,null);
 			alert.show();
 		}
+	}
+	
+	private void inisialisasiFragments(){
+		fragments = new HashMap<>();
+		DataKaderFragment dataKaderFragment = new DataKaderFragment(this);
+		DataPesertaFragment dataPesertaFragment = new DataPesertaFragment(this);
+		KegiatanFragment kegiatanFragment = new KegiatanFragment(this);
+		
+		fragments.put(DataKaderFragment.class, dataKaderFragment);
+		fragments.put(DataPesertaFragment.class, dataPesertaFragment);
+		fragments.put(KegiatanFragment.class, kegiatanFragment);
 	}
 
 	public void logout(){
