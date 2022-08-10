@@ -19,7 +19,7 @@ public class EditPesertaFragment extends Fragment implements Button.OnClickListe
 	public BerandaActivity activity;
 	public Peserta peserta;
 	private TextView txtTitle;
-	private Button btnDaftar, btnKembali;
+	private Button btnDaftar, btnKembali,btnRiwayat;
 	private EditText edtNik, edtNama, edtNamaSuami,edtNotel,edtAlamat,
 	edtTanggal,edtBulan,edtTahun,edtUsername,edtPassword,edtRePassword,
 	edtStatus,edtGolDarah,edtTanggalLahir;
@@ -59,6 +59,7 @@ public class EditPesertaFragment extends Fragment implements Button.OnClickListe
 		edtTanggalLahir = view.findViewById(R.id.pendaftaran_edt_tanggal);
 		btnDaftar = view.findViewById(R.id.pendaftaran_daftar);
 		btnKembali = view.findViewById(R.id.pendaftaran_kembali);
+		btnRiwayat = view.findViewById(R.id.pendaftaran_riwayat);
 		rgStatus = view.findViewById(R.id.pendaftaran_rg_status);
 		rgGolDarah = view.findViewById(R.id.pendaftaran_rg_goldarah);
 		rowUsername = view.findViewById(R.id.pendaftaran_row_username);
@@ -67,6 +68,7 @@ public class EditPesertaFragment extends Fragment implements Button.OnClickListe
 		layTgl = view.findViewById(R.id.pendaftaran_lay_tanggal);
 		btnDaftar.setOnClickListener(this);
 		btnKembali.setOnClickListener(this);
+		btnRiwayat.setOnClickListener(this);
 
 		btnDaftar.setText("SIMPAN");
 
@@ -99,6 +101,7 @@ public class EditPesertaFragment extends Fragment implements Button.OnClickListe
 				edtStatus.setVisibility(View.VISIBLE);
 				edtGolDarah.setVisibility(View.VISIBLE);
 				edtTanggalLahir.setVisibility(View.VISIBLE);
+				btnRiwayat.setVisibility(View.VISIBLE);
 				rgStatus.setVisibility(View.GONE);
 				rgGolDarah.setVisibility(View.GONE);
 				btnDaftar.setVisibility(View.GONE);
@@ -119,6 +122,7 @@ public class EditPesertaFragment extends Fragment implements Button.OnClickListe
 				edtStatus.setVisibility(View.GONE);
 				edtGolDarah.setVisibility(View.GONE);
 				edtTanggalLahir.setVisibility(View.GONE);
+				btnRiwayat.setVisibility(View.GONE);
 				txtTitle.setText("EDIT PROFIL");
 			}
 		}
@@ -165,6 +169,10 @@ public class EditPesertaFragment extends Fragment implements Button.OnClickListe
 				}else{
 					activity.setFragment(ProfilPesertaFragment.class);
 				}
+				break;
+			case R.id.pendaftaran_riwayat:
+				((DataRiwayatFragment)activity.fragments.get(DataRiwayatFragment.class)).setPeserta(peserta);
+				activity.setFragment(DataRiwayatFragment.class);
 				break;
 		}
 	}

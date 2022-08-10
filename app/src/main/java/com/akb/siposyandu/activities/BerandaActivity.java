@@ -65,6 +65,7 @@ implements NavigationView.OnNavigationItemSelectedListener{
 		}else if(level.equals(Level.PESERTA)){
 			navView.inflateMenu(R.menu.drawer_menu_peserta);	
 		}
+		setFragment(WelcomeFragment.class);
 		//onNavigationItemSelected(navView.getMenu().getItem(0).getSubMenu().getItem(0));
 	}
 
@@ -152,12 +153,14 @@ implements NavigationView.OnNavigationItemSelectedListener{
 		fragments = new HashMap<>();
 		DataKaderFragment dataKaderFragment = new DataKaderFragment(this);
 		DataPesertaFragment dataPesertaFragment = new DataPesertaFragment(this);
+		DataRiwayatFragment dataRiwayatFragment = new DataRiwayatFragment(this);
 		KegiatanFragment kegiatanFragment = new KegiatanFragment(this);
 		TambahKegiatanFragment tambahKegiatanFragment = new TambahKegiatanFragment(this);
 		TambahKaderFragment tambahKaderFragment = new TambahKaderFragment(this);
 		ProfilPesertaFragment profilPesertaFragment = new ProfilPesertaFragment(this);
 		ProfilKaderFragment profilKaderFragment = new ProfilKaderFragment(this);
 		EditPesertaFragment editPesertaFragment = new EditPesertaFragment(this);
+		WelcomeFragment welcomeFragment = new WelcomeFragment(this);
 		
 		fragments.put(DataKaderFragment.class, dataKaderFragment);
 		fragments.put(DataPesertaFragment.class, dataPesertaFragment);
@@ -167,6 +170,8 @@ implements NavigationView.OnNavigationItemSelectedListener{
 		fragments.put(ProfilPesertaFragment.class,profilPesertaFragment);
 		fragments.put(ProfilKaderFragment.class,profilKaderFragment);
 		fragments.put(EditPesertaFragment.class,editPesertaFragment);
+		fragments.put(WelcomeFragment.class,welcomeFragment);
+		fragments.put(DataRiwayatFragment.class,dataRiwayatFragment);
 	}
 	
 	public void setFragment(Class<? extends Fragment> key){
