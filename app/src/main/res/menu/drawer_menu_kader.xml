@@ -13,11 +13,11 @@
 					android:icon="@mipmap/ic_launcher_round"
 					android:title="Profil" />
 				<item
-					android:id="@+id/nav_kader_dataPerserta"
+					android:id="@+id/nav_admin_dataPerserta"
 					android:icon="@mipmap/ic_launcher_round"
 					android:title="Data Peserta" />
 				<item
-					android:id="@+id/nav_kader_kegiatan"
+					android:id="@+id/nav_admin_kegiatan"
 					android:icon="@mipmap/ic_launcher_round"
 					android:title="Kegiatan" />
 			</group>

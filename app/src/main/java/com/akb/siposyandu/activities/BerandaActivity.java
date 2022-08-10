@@ -112,6 +112,9 @@ implements NavigationView.OnNavigationItemSelectedListener{
 			case R.id.nav_admin_kegiatan:
 				key = KegiatanFragment.class;
 				break;
+			case R.id.nav_kader_profil:
+				key = ProfilKaderFragment.class;
+				break;
 			case R.id.nav_peserta_profil:
 				key =  ProfilPesertaFragment.class;
 				break;
@@ -153,6 +156,7 @@ implements NavigationView.OnNavigationItemSelectedListener{
 		TambahKegiatanFragment tambahKegiatanFragment = new TambahKegiatanFragment(this);
 		TambahKaderFragment tambahKaderFragment = new TambahKaderFragment(this);
 		ProfilPesertaFragment profilPesertaFragment = new ProfilPesertaFragment(this);
+		ProfilKaderFragment profilKaderFragment = new ProfilKaderFragment(this);
 		EditPesertaFragment editPesertaFragment = new EditPesertaFragment(this);
 		
 		fragments.put(DataKaderFragment.class, dataKaderFragment);
@@ -161,6 +165,7 @@ implements NavigationView.OnNavigationItemSelectedListener{
 		fragments.put(TambahKegiatanFragment.class, tambahKegiatanFragment);
 		fragments.put(TambahKaderFragment.class, tambahKaderFragment);
 		fragments.put(ProfilPesertaFragment.class,profilPesertaFragment);
+		fragments.put(ProfilKaderFragment.class,profilKaderFragment);
 		fragments.put(EditPesertaFragment.class,editPesertaFragment);
 	}
 	

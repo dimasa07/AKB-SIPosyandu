@@ -23,7 +23,9 @@ public class TambahKaderFragment extends Fragment implements View.OnClickListene
 	private View root;
 	private TextView txtTitle;
 	private Button btnTambah,btnKembali;
-	private EditText edtNik,edtNama,edtNoTelepon,edtAlamat;
+	private EditText edtNik,edtNama,edtNoTelepon,edtAlamat,edtJK,edtStatus,
+	edtUsername,edtPassword,edtRePassword;
+	private TableRow rowUsername,rowPassword,rowRePassword;
 	private RadioGroup rgJK,rgStatus;
 	private RadioButton rbMale,rbFemale,rbAktif,rbTidakAktif;
 	private Kader kader;
@@ -49,6 +51,14 @@ public class TambahKaderFragment extends Fragment implements View.OnClickListene
 		edtNama = view.findViewById(R.id.tambah_kader_edt_nama);
 		edtNoTelepon = view.findViewById(R.id.tambah_kader_edt_notel);
 		edtAlamat = view.findViewById(R.id.tambah_kader_edt_alamat);
+		edtJK = view.findViewById(R.id.tambah_kader_edt_jk);
+		edtStatus = view.findViewById(R.id.tambah_kader_edt_status);
+		edtUsername = view.findViewById(R.id.tambah_kader_edt_username);
+		edtPassword = view.findViewById(R.id.tambah_kader_edt_password);
+		edtRePassword = view.findViewById(R.id.tambah_kader_edt_repassword);
+		rowUsername = view.findViewById(R.id.tambah_kader_row_username);
+		rowPassword = view.findViewById(R.id.tambah_kader_row_password);
+		rowRePassword = view.findViewById(R.id.tambah_kader_row_repassword);
 		rgJK = view.findViewById(R.id.tambah_kader_radio_jk);
 		rgStatus = view.findViewById(R.id.tambah_kader_radio_status);
 		rbMale = view.findViewById(R.id.tambah_kader_radio_male);
@@ -70,22 +80,26 @@ public class TambahKaderFragment extends Fragment implements View.OnClickListene
 			edtNama.setEnabled(false);
 			edtAlamat.setEnabled(false);
 			edtNoTelepon.setEnabled(false);
-			rbFemale.setVisibility(View.GONE);
-			rbTidakAktif.setVisibility(View.GONE);
-			rbMale.setText(kader.getJenisKelamin());
-			rbAktif.setText(kader.getStatus());
-			rbMale.setChecked(true);
-			rbAktif.setChecked(true);
+			rowUsername.setVisibility(View.GONE);
+			rowPassword.setVisibility(View.GONE);
+			rowRePassword.setVisibility(View.GONE);
+			rgJK.setVisibility(View.GONE);
+			rgStatus.setVisibility(View.GONE);
+			edtJK.setVisibility(View.VISIBLE);
+			edtStatus.setVisibility(View.VISIBLE);
+			edtJK.setText(kader.getJenisKelamin());
+			edtStatus.setText(kader.getStatus());
+
 		}else{
 			btnTambah.setVisibility(View.VISIBLE);
 			edtNik.setEnabled(true);
 			edtNama.setEnabled(true);
 			edtAlamat.setEnabled(true);
 			edtNoTelepon.setEnabled(true);
-			rbFemale.setVisibility(View.VISIBLE);
-			rbTidakAktif.setVisibility(View.VISIBLE);
-			rbMale.setText("LAKI-LAKI");
-			rbAktif.setText("AKTIF");
+			rgJK.setVisibility(View.VISIBLE);
+			rgStatus.setVisibility(View.VISIBLE);
+			edtJK.setVisibility(View.GONE);
+			edtStatus.setVisibility(View.GONE);
 		}
 		if(kader != null){
 			edtNik.setText(kader.getNik());
@@ -94,19 +108,24 @@ public class TambahKaderFragment extends Fragment implements View.OnClickListene
 			edtAlamat.setText(kader.getAlamat());
 			if(mode.equals("EDIT")){
 				edtNik.setEnabled(false);
-				txtTitle.setText("Edit Kader");
-				btnTambah.setText("Edit");
+				txtTitle.setText("EDIT KADER");
+				btnTambah.setText("SIMPAN");
+				rowUsername.setVisibility(View.GONE);
+			rowPassword.setVisibility(View.GONE);
+			rowRePassword.setVisibility(View.GONE);
 			}else{
-				txtTitle.setText("Data Kader");
+				txtTitle.setText("PROFIL KADER");
 			}
 		}else{
 			edtNik.setText("");
 			edtNama.setText("");
 			edtNoTelepon.setText("");
 			edtAlamat.setText("");
-			txtTitle.setText("Tambah Kader");
-			btnTambah.setText("Tambah");
-			
+			txtTitle.setText("TAMBAH KADER");
+			btnTambah.setText("TAMBAH");
+			rowUsername.setVisibility(View.VISIBLE);
+			rowPassword.setVisibility(View.VISIBLE);
+			rowRePassword.setVisibility(View.VISIBLE);
 		}
 	}
 
@@ -130,19 +149,33 @@ public class TambahKaderFragment extends Fragment implements View.OnClickListene
 				int statusId = rgStatus.getCheckedRadioButtonId();
 				String jenisKelamin = ((RadioButton)root.findViewById(jkId)).getText().toString();
 				String status = ((RadioButton)root.findViewById(statusId)).getText().toString();
+				String username = edtUsername.getText().toString();
+				String password = edtPassword.getText().toString();
+				String rePassword = edtRePassword.getText().toString();
 				if(nik.isEmpty() || nama.isEmpty() || noTel.isEmpty() || alamat.isEmpty()){
 					Toast.makeText(activity.getApplicationContext(), "Data tidak boleh kosong", Toast.LENGTH_LONG).show();
 				}else{
-					tambah(nik, nama, noTel, alamat, jenisKelamin, status);
+					if(!mode.equals("EDIT")&&(username.isEmpty() || password.isEmpty() || rePassword.isEmpty())){
+						Toast.makeText(activity.getApplicationContext(), "Data tidak boleh kosong", Toast.LENGTH_LONG).show();
+					}else if(!password.equals(rePassword)){
+						Toast.makeText(activity.getApplicationContext(), "Password dan Re-Password tidak sesuai", Toast.LENGTH_LONG).show();
+					}else{
+						tambah(nik, nama, noTel, alamat, jenisKelamin, status, username, password);
+					}
 				}
 				break;
 			case R.id.tambah_kader_btn_kembali:
-				activity.setFragment(DataKaderFragment.class);
+				String level = ConstantVariables.APP_PREF.getString("level", "");
+				if(level.equals("ADMIN")){
+					activity.setFragment(DataKaderFragment.class);
+				}else if(level.equals("KADER")){
+					activity.setFragment(ProfilKaderFragment.class);
+				}
 				break;
 		}
 	}
 
-	public void tambah(String nik, String nama, String noTel, String alamat, String jk, String status){
+	public void tambah(String nik, String nama, String noTel, String alamat, String jk, String status, String username, String password){
 		String action  = "tambah_kader.php";
 		if(mode.equals("EDIT")){
 			action = "edit_kader.php";
@@ -154,6 +187,8 @@ public class TambahKaderFragment extends Fragment implements View.OnClickListene
 			.addBodyParameter("no_telepon", noTel)
 			.addBodyParameter("alamat", alamat)
 			.addBodyParameter("status", status)
+			.addBodyParameter("username", username)
+			.addBodyParameter("password", password)
 			.setPriority(Priority.MEDIUM)
 			.build()
 			.getAsJSONObject(new JSONObjectRequestListener(){
@@ -166,7 +201,12 @@ public class TambahKaderFragment extends Fragment implements View.OnClickListene
 
 						Toast.makeText(activity.getApplicationContext(), message, Toast.LENGTH_LONG).show();
 						if(value == 1){
-							activity.setFragment(DataKaderFragment.class);
+							String level = ConstantVariables.APP_PREF.getString("level", "");
+							if(level.equals("ADMIN")){
+								activity.setFragment(DataKaderFragment.class);
+							}else if(level.equals("KADER")){
+								activity.setFragment(ProfilKaderFragment.class);
+							}
 						}
 					}catch(JSONException e){
 						Toast.makeText(activity.getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();

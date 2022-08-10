@@ -49,6 +49,11 @@ public class KegiatanFragment extends Fragment
 		recyclerView.setAdapter(adapterKegiatan);
 		
 		FloatingActionButton fab = view.findViewById(R.id.kegiatan_tambah);
+		if(ConstantVariables.APP_PREF.getString("level","").equals("PESERTA")){
+			fab.setVisibility(View.GONE);
+		}else{
+			fab.setVisibility(View.VISIBLE);
+		}
 		fab.setOnClickListener(new View.OnClickListener(){
 
 				@Override

@@ -14,7 +14,7 @@
 		android:layout_marginTop="30dp">
 
 		<TextView
-			android:text="PROFIL PESERTA"
+			android:text="PROFIL KADER"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:textSize="25sp"
@@ -49,7 +49,7 @@
 					android:layout_height="wrap_content"
 					android:textAppearance="?android:attr/textAppearanceSmall"
 					android:layout_width="wrap_content"
-					android:id="@+id/profil_peserta_txt_nik"/>
+					android:id="@+id/profil_kader_txt_nik"/>
 
 			</TableRow>
 
@@ -75,7 +75,7 @@
 					android:layout_height="wrap_content"
 					android:textAppearance="?android:attr/textAppearanceSmall"
 					android:layout_width="wrap_content"
-					android:id="@+id/profil_peserta_txt_nama"/>
+					android:id="@+id/profil_kader_txt_nama"/>
 
 			</TableRow>
 
@@ -89,7 +89,7 @@
 					android:layout_height="wrap_content"
 					android:textAppearance="?android:attr/textAppearanceSmall"
 					android:layout_width="wrap_content"
-					android:text="Nama Suami"/>
+					android:text="Jenis Kelamin"/>
 
 				<TextView
 					android:layout_height="wrap_content"
@@ -101,7 +101,7 @@
 					android:layout_height="wrap_content"
 					android:textAppearance="?android:attr/textAppearanceSmall"
 					android:layout_width="wrap_content"
-					android:id="@+id/profil_peserta_txt_nama_suami"/>
+					android:id="@+id/profil_kader_txt_jk"/>
 
 			</TableRow>
 
@@ -127,7 +127,7 @@
 					android:layout_height="wrap_content"
 					android:textAppearance="?android:attr/textAppearanceSmall"
 					android:layout_width="wrap_content"
-					android:id="@+id/profil_peserta_txt_no_telepon"/>
+					android:id="@+id/profil_kader_txt_no_telepon"/>
 
 			</TableRow>
 
@@ -153,7 +153,7 @@
 					android:layout_height="wrap_content"
 					android:textAppearance="?android:attr/textAppearanceSmall"
 					android:layout_width="wrap_content"
-					android:id="@+id/profil_peserta_txt_alamat"/>
+					android:id="@+id/profil_kader_txt_alamat"/>
 
 			</TableRow>
 
@@ -179,59 +179,7 @@
 					android:layout_height="wrap_content"
 					android:textAppearance="?android:attr/textAppearanceSmall"
 					android:layout_width="wrap_content"
-					android:id="@+id/profil_peserta_txt_status"/>
-
-			</TableRow>
-
-			<TableRow
-				android:layout_height="wrap_content"
-				android:layout_width="wrap_content"
-				android:gravity="center"
-				android:padding="5dp">
-
-				<TextView
-					android:layout_height="wrap_content"
-					android:textAppearance="?android:attr/textAppearanceSmall"
-					android:layout_width="wrap_content"
-					android:text="Gol. Darah"/>
-
-				<TextView
-					android:layout_height="wrap_content"
-					android:textAppearance="?android:attr/textAppearanceMedium"
-					android:layout_width="wrap_content"
-					android:text=" : "/>
-
-				<TextView
-					android:layout_height="wrap_content"
-					android:textAppearance="?android:attr/textAppearanceSmall"
-					android:layout_width="wrap_content"
-					android:id="@+id/profil_peserta_txt_gol_darah"/>
-
-			</TableRow>
-
-			<TableRow
-				android:layout_height="wrap_content"
-				android:layout_width="wrap_content"
-				android:gravity="center"
-				android:padding="5dp">
-
-				<TextView
-					android:layout_height="wrap_content"
-					android:textAppearance="?android:attr/textAppearanceSmall"
-					android:layout_width="wrap_content"
-					android:text="Tgl. Lahir"/>
-
-				<TextView
-					android:layout_height="wrap_content"
-					android:textAppearance="?android:attr/textAppearanceMedium"
-					android:layout_width="wrap_content"
-					android:text=" : "/>
-
-				<TextView
-					android:layout_height="wrap_content"
-					android:textAppearance="?android:attr/textAppearanceSmall"
-					android:layout_width="wrap_content"
-					android:id="@+id/profil_peserta_txt_tgl_lahir"/>
+					android:id="@+id/profil_kader_txt_status"/>
 
 			</TableRow>
 
@@ -241,7 +189,7 @@
 			android:layout_height="wrap_content"
 			android:layout_width="match_parent"
 			android:text="edit"
-			android:id="@+id/profil_peserta_btn_edit"
+			android:id="@+id/profil_kader_btn_edit"
 			android:layout_marginTop="20dp"/>
 
 	</LinearLayout>

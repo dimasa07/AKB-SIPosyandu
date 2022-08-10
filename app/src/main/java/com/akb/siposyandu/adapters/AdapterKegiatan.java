@@ -114,6 +114,12 @@ public class AdapterKegiatan extends RecyclerView.Adapter<AdapterKegiatan.ViewHo
 			txtDeskripsi = itemView.findViewById(R.id.card_kegiatan_deskripsi);
 			txtTanggal = itemView.findViewById(R.id.card_kegiatan_tanggal);
 			btnHapus = itemView.findViewById(R.id.card_kegiatan_hapus);
+			if(ConstantVariables.APP_PREF.getString("level","").equals("PESERTA")){
+				btnHapus.setVisibility(View.GONE);
+			}else{
+				btnHapus.setVisibility(View.VISIBLE);
+			}
+			
 			card_kegiatan = itemView.findViewById(R.id.card_kegiatan);
 		}
 	}

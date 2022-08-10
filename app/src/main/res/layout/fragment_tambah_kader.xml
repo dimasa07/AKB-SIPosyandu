@@ -10,10 +10,11 @@
 		android:padding="10dp"
 		android:layout_centerHorizontal="true"
 		android:layout_height="wrap_content"
-		android:layout_width="match_parent">
+		android:layout_width="match_parent"
+		android:layout_marginTop="30dp">
 
 		<TextView
-			android:text="Tambah Kader"
+			android:text="TAMBAH KADER"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:textSize="25sp"
@@ -153,6 +154,15 @@
 					android:orientation="horizontal"
 					android:padding="5dp">
 
+					<EditText
+						android:layout_height="wrap_content"
+						android:inputType="textMultiLine"
+						android:layout_width="wrap_content"
+						android:ems="15"
+						android:visibility="gone"
+						android:enabled="false"
+						android:id="@+id/tambah_kader_edt_jk"/>
+
 					<RadioGroup
 						android:layout_height="wrap_content"
 						android:layout_width="wrap_content"
@@ -202,6 +212,15 @@
 					android:orientation="horizontal"
 					android:padding="5dp">
 
+					<EditText
+						android:layout_height="wrap_content"
+						android:inputType="textMultiLine"
+						android:layout_width="wrap_content"
+						android:ems="15"
+						android:visibility="gone"
+						android:enabled="false"
+						android:id="@+id/tambah_kader_edt_status"/>
+
 					<RadioGroup
 						android:layout_height="wrap_content"
 						android:layout_width="wrap_content"
@@ -225,6 +244,87 @@
 					</RadioGroup>
 
 				</LinearLayout>
+
+			</TableRow>
+
+			<TableRow
+				android:layout_height="wrap_content"
+				android:layout_width="wrap_content"
+				android:id="@+id/tambah_kader_row_username"
+				android:gravity="center">
+
+				<TextView
+					android:layout_height="wrap_content"
+					android:textAppearance="?android:attr/textAppearanceSmall"
+					android:layout_width="wrap_content"
+					android:text="Username"/>
+
+				<TextView
+					android:layout_height="wrap_content"
+					android:layout_width="wrap_content"
+					android:text=" : "
+					android:textAppearance="?android:attr/textAppearanceMedium"/>
+
+				<EditText
+					android:layout_height="wrap_content"
+					android:inputType="text"
+					android:layout_width="wrap_content"
+					android:ems="15"
+					android:id="@+id/tambah_kader_edt_username"/>
+
+			</TableRow>
+
+			<TableRow
+				android:layout_height="wrap_content"
+				android:layout_width="wrap_content"
+				android:id="@+id/tambah_kader_row_password"
+				android:gravity="center">
+
+				<TextView
+					android:layout_height="wrap_content"
+					android:textAppearance="?android:attr/textAppearanceSmall"
+					android:layout_width="wrap_content"
+					android:text="Password"/>
+
+				<TextView
+					android:layout_height="wrap_content"
+					android:textAppearance="?android:attr/textAppearanceMedium"
+					android:layout_width="wrap_content"
+					android:text=" : "/>
+
+				<EditText
+					android:layout_height="wrap_content"
+					android:inputType="textPassword"
+					android:layout_width="wrap_content"
+					android:ems="15"
+					android:id="@+id/tambah_kader_edt_password"/>
+
+			</TableRow>
+
+			<TableRow
+				android:layout_height="wrap_content"
+				android:layout_width="wrap_content"
+				android:id="@+id/tambah_kader_row_repassword"
+				android:gravity="center">
+
+				<TextView
+					android:layout_height="wrap_content"
+					android:textAppearance="?android:attr/textAppearanceSmall"
+					android:layout_width="wrap_content"
+					android:text="Re-Password"/>
+
+				<TextView
+					android:layout_height="wrap_content"
+					android:textAppearance="?android:attr/textAppearanceMedium"
+					android:layout_width="wrap_content"
+					android:text=" : "/>
+
+				<EditText
+					android:layout_height="wrap_content"
+					android:inputType="textPassword"
+					android:layout_width="wrap_content"
+					android:ems="15"
+					android:id="@+id/tambah_kader_edt_repassword"/>
 
 			</TableRow>
 
