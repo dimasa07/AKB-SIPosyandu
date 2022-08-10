@@ -90,6 +90,14 @@ public class AdapterPeserta extends RecyclerView.Adapter<AdapterPeserta.ViewHold
 					alert.show();
 				}
 			});
+		holder.btnLihat.setOnClickListener(new Button.OnClickListener(){
+
+				@Override
+				public void onClick(View p1){
+					((EditPesertaFragment)fragment.activity.fragments.get(EditPesertaFragment.class)).setPeserta((dataList.get(position)),"VIEW");
+					fragment.activity.setFragment(EditPesertaFragment.class);
+				}
+			});
 	}
 
 	@Override
@@ -99,10 +107,10 @@ public class AdapterPeserta extends RecyclerView.Adapter<AdapterPeserta.ViewHold
 
 	@Override
 	public void onClick(View p1){
-		int itemPosition = fragment.recyclerView.getChildAdapterPosition(p1);
-		((EditPesertaFragment)fragment.activity.fragments.get(EditPesertaFragment.class)).setPeserta((dataList.get(itemPosition)),"VIEW");
-		fragment.activity.setFragment(EditPesertaFragment.class);
-		
+//		int itemPosition = fragment.recyclerView.getChildAdapterPosition(p1);
+//		((EditPesertaFragment)fragment.activity.fragments.get(EditPesertaFragment.class)).setPeserta((dataList.get(itemPosition)),"VIEW");
+//		fragment.activity.setFragment(EditPesertaFragment.class);
+//		
 	}
 
 	class ViewHolderData extends RecyclerView.ViewHolder{
@@ -111,7 +119,7 @@ public class AdapterPeserta extends RecyclerView.Adapter<AdapterPeserta.ViewHold
 		private TextView txtNik;
 		private TextView txtNama;
 		private TextView txtNamaSuami;
-		private Button btnHapus;
+		private Button btnHapus,btnLihat;
 		private CardView card_peserta;
 
 		ViewHolderData(View itemView){
@@ -121,6 +129,7 @@ public class AdapterPeserta extends RecyclerView.Adapter<AdapterPeserta.ViewHold
 			txtNama = itemView.findViewById(R.id.card_peserta_nama);
 			txtNamaSuami = itemView.findViewById(R.id.card_peserta_nama_suami);
 			btnHapus = itemView.findViewById(R.id.card_peserta_hapus);
+			btnLihat = itemView.findViewById(R.id.card_peserta_lihat);
 			card_peserta = itemView.findViewById(R.id.card_peserta);
 		}
 	}

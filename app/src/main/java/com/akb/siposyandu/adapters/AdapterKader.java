@@ -98,6 +98,14 @@ public class AdapterKader extends RecyclerView.Adapter<AdapterKader.ViewHolderDa
 					alert.show();
 				}
 			});
+		holder.btnLihat.setOnClickListener(new Button.OnClickListener(){
+
+				@Override
+				public void onClick(View p1){
+					((TambahKaderFragment)fragment.activity.fragments.get(TambahKaderFragment.class)).setKader(dataList.get(position),"VIEW");
+					fragment.activity.setFragment(TambahKaderFragment.class);
+				}
+			});
 	}
 
 	@Override
@@ -107,10 +115,10 @@ public class AdapterKader extends RecyclerView.Adapter<AdapterKader.ViewHolderDa
 
 	@Override
 	public void onClick(View p1){
-		int itemPosition = fragment.recyclerView.getChildAdapterPosition(p1);
-		((TambahKaderFragment)fragment.activity.fragments.get(TambahKaderFragment.class)).setKader(dataList.get(itemPosition),"VIEW");
-		fragment.activity.setFragment(TambahKaderFragment.class);
-		
+//		int itemPosition = fragment.recyclerView.getChildAdapterPosition(p1);
+//		((TambahKaderFragment)fragment.activity.fragments.get(TambahKaderFragment.class)).setKader(dataList.get(itemPosition),"VIEW");
+//		fragment.activity.setFragment(TambahKaderFragment.class);
+//		
 	}
 
 	class ViewHolderData extends RecyclerView.ViewHolder{
@@ -119,7 +127,7 @@ public class AdapterKader extends RecyclerView.Adapter<AdapterKader.ViewHolderDa
 		private TextView txtNama;
 		private TextView txtNik;
 		private TextView txtStatus;
-		private Button btnEdit,btnHapus;
+		private Button btnEdit,btnHapus,btnLihat;
 		private CardView card_kader;
 
 		ViewHolderData(View itemView){
@@ -130,6 +138,7 @@ public class AdapterKader extends RecyclerView.Adapter<AdapterKader.ViewHolderDa
 			txtStatus = itemView.findViewById(R.id.card_kader_status);
 			btnHapus = itemView.findViewById(R.id.card_kader_hapus);
 			btnEdit = itemView.findViewById(R.id.card_kader_edit);
+			btnLihat = itemView.findViewById(R.id.card_kader_lihat);
 			card_kader = itemView.findViewById(R.id.card_kader);
 		}
 	}
