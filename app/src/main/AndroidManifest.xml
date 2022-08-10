@@ -22,6 +22,9 @@
 					android:name=".activities.LoginActivity"
 					android:theme="@style/AppTheme"/>
 			<activity
+				android:name=".activities.PendaftaranActivity"
+				android:theme="@style/AppTheme"/>
+			<activity
 				android:name=".activities.BerandaActivity"
 				android:theme="@style/AppTheme"/>
     </application>

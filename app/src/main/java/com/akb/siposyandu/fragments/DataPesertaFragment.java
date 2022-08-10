@@ -18,15 +18,16 @@ import com.androidnetworking.interfaces.*;
 import org.json.*;
 import com.androidnetworking.error.*;
 import android.widget.*;
+import com.akb.siposyandu.activities.*;
 
 public class DataPesertaFragment extends Fragment
 {
-	public Activity activity;
+	public BerandaActivity activity;
 	public RecyclerView recyclerView;
 	private List<Peserta> peserta;
 	AdapterPeserta adapterPeserta;
 
-	public DataPesertaFragment(Activity activity){
+	public DataPesertaFragment(BerandaActivity activity){
 		this.activity = activity;
 	}
 
@@ -53,7 +54,8 @@ public class DataPesertaFragment extends Fragment
 		restoreData();
 	}
 
-	private void restoreData(){
+	public void restoreData(){
+		peserta.clear();
 		AndroidNetworking.get(ConstantVariables.API+"data_peserta.php")
 		.setPriority(Priority.MEDIUM)
 		.build()

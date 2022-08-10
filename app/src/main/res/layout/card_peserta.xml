@@ -54,12 +54,6 @@
 			android:orientation="horizontal"
 			android:gravity="right">
 
-			<Button
-				style="?android:attr/buttonStyleSmall"
-				android:layout_height="wrap_content"
-				android:layout_width="100dp"
-				android:text="Edit"
-				android:id="@+id/card_peserta_edit"/>
 
 			<Button
 				style="?android:attr/buttonStyleSmall"

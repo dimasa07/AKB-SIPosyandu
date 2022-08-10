@@ -98,7 +98,8 @@
 		android:layout_alignParentBottom="true"
 		android:layout_alignParentRight="true"
 		android:layout_margin="10dp"
-		android:gravity="right">
+		android:gravity="right"
+		android:visibility="gone">
 
 		<TextView
 			android:layout_height="wrap_content"

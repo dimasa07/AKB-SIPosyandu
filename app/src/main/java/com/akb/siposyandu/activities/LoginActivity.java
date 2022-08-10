@@ -89,7 +89,7 @@ public class LoginActivity extends AppCompatActivity implements Button.OnClickLi
 	}
 
 	public void pendaftaran(){
-
+		startActivity(new Intent(this, PendaftaranActivity.class));
 	}
 	
 	public void keluar(){

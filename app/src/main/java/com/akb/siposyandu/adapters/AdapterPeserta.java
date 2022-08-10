@@ -23,6 +23,11 @@ import com.androidnetworking.common.Priority;
 import com.androidnetworking.interfaces.DownloadProgressListener;
 import com.androidnetworking.interfaces.DownloadListener;
 import com.androidnetworking.error.ANError;
+import android.widget.*;
+import android.app.*;
+import android.content.*;
+import com.androidnetworking.interfaces.*;
+import org.json.*;
 
 public class AdapterPeserta extends RecyclerView.Adapter<AdapterPeserta.ViewHolderData> implements View.OnClickListener{
 
@@ -44,11 +49,47 @@ public class AdapterPeserta extends RecyclerView.Adapter<AdapterPeserta.ViewHold
 	}
 
 	@Override
-	public void onBindViewHolder(AdapterPeserta.ViewHolderData holder, int position){
+	public void onBindViewHolder(AdapterPeserta.ViewHolderData holder, final int position){
 		holder.txtTitle.setText("Peserta "+(position+1));
 		holder.txtNama.setText("Nama : "+dataList.get(position).getNama());
 		holder.txtNik.setText("NIK : "+dataList.get(position).getNik());
 		holder.txtNamaSuami.setText("Nama Suami : "+dataList.get(position).getNamaSuami());
+		holder.btnHapus.setOnClickListener(new Button.OnClickListener(){
+				@Override
+				public void onClick(View p1){
+					AlertDialog.Builder alert = new AlertDialog.Builder(fragment.getActivity());
+					alert.setTitle("Hapus Peserta");
+					alert.setMessage("Yakin ingin hapus ?");
+					alert.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener(){
+							@Override
+							public void onClick(DialogInterface p1, int p2){
+								AndroidNetworking.post(ConstantVariables.API + "hapus_peserta.php")
+									.addBodyParameter("nik_ibu", dataList.get(position).getNik())
+									.setPriority(Priority.MEDIUM)
+									.build()
+									.getAsJSONObject((new JSONObjectRequestListener(){
+																		 @Override
+																		 public void onResponse(JSONObject p1){
+																			 try{
+																				 String message = p1.getString("message");
+																				 fragment.restoreData();
+																				 Toast.makeText(fragment.activity.getApplicationContext(), message, Toast.LENGTH_LONG).show();
+																			 }catch(JSONException e){
+																				 Toast.makeText(fragment.activity.getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();			
+																			 }
+																		 }
+
+																		 @Override
+																		 public void onError(ANError p1){
+																			 Toast.makeText(fragment.activity.getApplicationContext(), p1.getMessage(), Toast.LENGTH_LONG).show();
+																		 }
+																	 }));
+							}
+						});
+					alert.setNegativeButton(android.R.string.no, null);
+					alert.show();
+				}
+			});
 	}
 
 	@Override
@@ -72,6 +113,7 @@ public class AdapterPeserta extends RecyclerView.Adapter<AdapterPeserta.ViewHold
 		private TextView txtNik;
 		private TextView txtNama;
 		private TextView txtNamaSuami;
+		private Button btnHapus;
 		private CardView card_peserta;
 
 		ViewHolderData(View itemView){
@@ -80,6 +122,7 @@ public class AdapterPeserta extends RecyclerView.Adapter<AdapterPeserta.ViewHold
 			txtNik = itemView.findViewById(R.id.card_peserta_nik);
 			txtNama = itemView.findViewById(R.id.card_peserta_nama);
 			txtNamaSuami = itemView.findViewById(R.id.card_peserta_nama_suami);
+			btnHapus = itemView.findViewById(R.id.card_peserta_hapus);
 			card_peserta = itemView.findViewById(R.id.card_peserta);
 		}
 	}

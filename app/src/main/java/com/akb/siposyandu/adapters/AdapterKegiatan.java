@@ -97,7 +97,6 @@ public class AdapterKegiatan extends RecyclerView.Adapter<AdapterKegiatan.ViewHo
 		return (dataList != null) ?dataList.size() : 0;
 	}
 
-	
 	class ViewHolderData extends RecyclerView.ViewHolder{
 
 		private TextView txtTitle;

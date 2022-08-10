@@ -9,6 +9,10 @@
 				android:checkableBehavior="single"
 				android:id="@+id/nav_menu_peserta">
 				<item
+					android:id="@+id/nav_peserta_profil"
+					android:icon="@mipmap/ic_launcher_round"
+					android:title="Profil" />
+				<item
 					android:id="@+id/nav_peserta_ibuHamil"
 					android:icon="@mipmap/ic_launcher_round"
 					android:title="Ibu Hamil" />

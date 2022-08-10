@@ -54,6 +54,7 @@ implements NavigationView.OnNavigationItemSelectedListener{
 		drawer.addDrawerListener(toggle);
 		toggle.syncState();
 			
+		inisialisasiFragments();
 		NavigationView navView = findViewById(R.id.nav_view);
 		navView.setNavigationItemSelectedListener(this);
 		navView.getMenu().clear();
@@ -62,10 +63,9 @@ implements NavigationView.OnNavigationItemSelectedListener{
 		}else if(level.equals(Level.KADER)){
 			navView.inflateMenu(R.menu.drawer_menu_kader);
 		}else if(level.equals(Level.PESERTA)){
-			navView.inflateMenu(R.menu.drawer_menu_peserta);
+			navView.inflateMenu(R.menu.drawer_menu_peserta);	
 		}
-		
-		inisialisasiFragments();
+		//onNavigationItemSelected(navView.getMenu().getItem(0).getSubMenu().getItem(0));
 	}
 
 	@Override
@@ -112,6 +112,9 @@ implements NavigationView.OnNavigationItemSelectedListener{
 			case R.id.nav_admin_kegiatan:
 				key = KegiatanFragment.class;
 				break;
+			case R.id.nav_peserta_profil:
+				key =  ProfilPesertaFragment.class;
+				break;
 		}
 		
 		if(key != null){
@@ -149,12 +152,16 @@ implements NavigationView.OnNavigationItemSelectedListener{
 		KegiatanFragment kegiatanFragment = new KegiatanFragment(this);
 		TambahKegiatanFragment tambahKegiatanFragment = new TambahKegiatanFragment(this);
 		TambahKaderFragment tambahKaderFragment = new TambahKaderFragment(this);
+		ProfilPesertaFragment profilPesertaFragment = new ProfilPesertaFragment(this);
+		EditPesertaFragment editPesertaFragment = new EditPesertaFragment(this);
 		
 		fragments.put(DataKaderFragment.class, dataKaderFragment);
 		fragments.put(DataPesertaFragment.class, dataPesertaFragment);
 		fragments.put(KegiatanFragment.class, kegiatanFragment);
 		fragments.put(TambahKegiatanFragment.class, tambahKegiatanFragment);
 		fragments.put(TambahKaderFragment.class, tambahKaderFragment);
+		fragments.put(ProfilPesertaFragment.class,profilPesertaFragment);
+		fragments.put(EditPesertaFragment.class,editPesertaFragment);
 	}
 	
 	public void setFragment(Class<? extends Fragment> key){
