@@ -54,6 +54,14 @@ public class AdapterKader extends RecyclerView.Adapter<AdapterKader.ViewHolderDa
 		holder.txtNama.setText("Nama : "+dataList.get(position).getNama());
 		holder.txtNik.setText("NIK : "+dataList.get(position).getNik());
 		holder.txtStatus.setText("Status : "+dataList.get(position).getStatus());
+		holder.btnEdit.setOnClickListener(new Button.OnClickListener(){
+
+				@Override
+				public void onClick(View p1){
+					((TambahKaderFragment)fragment.activity.fragments.get(TambahKaderFragment.class)).setKader(dataList.get(position),"EDIT");
+					fragment.activity.setFragment(TambahKaderFragment.class);
+				}
+			});
 		holder.btnHapus.setOnClickListener(new Button.OnClickListener(){
 				@Override
 				public void onClick(View p1){
@@ -100,11 +108,9 @@ public class AdapterKader extends RecyclerView.Adapter<AdapterKader.ViewHolderDa
 	@Override
 	public void onClick(View p1){
 		int itemPosition = fragment.recyclerView.getChildAdapterPosition(p1);
-		Toast.makeText(
-			fragment.activity.getApplicationContext(),
-			dataList.get(itemPosition).getNama(),Toast.LENGTH_SHORT
-		).show();
-
+		((TambahKaderFragment)fragment.activity.fragments.get(TambahKaderFragment.class)).setKader(dataList.get(itemPosition),"VIEW");
+		fragment.activity.setFragment(TambahKaderFragment.class);
+		
 	}
 
 	class ViewHolderData extends RecyclerView.ViewHolder{
