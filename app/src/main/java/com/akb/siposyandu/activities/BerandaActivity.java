@@ -157,6 +157,7 @@ implements NavigationView.OnNavigationItemSelectedListener{
 		KegiatanFragment kegiatanFragment = new KegiatanFragment(this);
 		TambahKegiatanFragment tambahKegiatanFragment = new TambahKegiatanFragment(this);
 		TambahKaderFragment tambahKaderFragment = new TambahKaderFragment(this);
+		TambahRiwayatFragment tambahRiwayatFragment = new TambahRiwayatFragment(this);
 		ProfilPesertaFragment profilPesertaFragment = new ProfilPesertaFragment(this);
 		ProfilKaderFragment profilKaderFragment = new ProfilKaderFragment(this);
 		EditPesertaFragment editPesertaFragment = new EditPesertaFragment(this);
@@ -172,6 +173,7 @@ implements NavigationView.OnNavigationItemSelectedListener{
 		fragments.put(EditPesertaFragment.class,editPesertaFragment);
 		fragments.put(WelcomeFragment.class,welcomeFragment);
 		fragments.put(DataRiwayatFragment.class,dataRiwayatFragment);
+		fragments.put(TambahRiwayatFragment.class,tambahRiwayatFragment);
 	}
 	
 	public void setFragment(Class<? extends Fragment> key){

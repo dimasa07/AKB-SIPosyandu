@@ -62,7 +62,8 @@ public class DataRiwayatFragment extends Fragment
 
 				@Override
 				public void onClick(View p1){
-					//activity.setFragment(TambahRiwayatFragment.class);
+					((TambahRiwayatFragment)activity.fragments.get(TambahRiwayatFragment.class)).setPeserta(peserta);
+					activity.setFragment(TambahRiwayatFragment.class);
 				}
 			});
 		fabKembali.setOnClickListener(new View.OnClickListener(){
