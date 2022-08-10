@@ -5,7 +5,8 @@
         <!-- Customize your theme here. -->
 		</style>
 	<style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-		<!-- Customize your theme here. -->
+		<item name="colorPrimary">#4DB6AC</item>
+		<item name="colorPrimaryDark">#00695C</item>
 	</style>
 	<style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 	<style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Light" />
