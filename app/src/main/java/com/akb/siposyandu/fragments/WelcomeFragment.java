@@ -23,7 +23,7 @@ public class WelcomeFragment extends Fragment
 	@Override
 	public void onViewCreated(View view, Bundle savedInstanceState){
 		super.onViewCreated(view, savedInstanceState);
-		String nama =ConstantVariables.APP_PREF.getString("username","");
+		String nama =ConstantVariables.APP_PREF.getString("nama","");
 		String level =ConstantVariables.APP_PREF.getString("level","");
 		TextView txtTitle = view.findViewById(R.id.fragment_welcome_title);
 		txtTitle.setText("Welcome "+nama+" ("+level+")");

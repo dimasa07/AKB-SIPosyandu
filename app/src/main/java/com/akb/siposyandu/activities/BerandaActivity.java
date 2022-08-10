@@ -45,6 +45,7 @@ implements NavigationView.OnNavigationItemSelectedListener{
 		editPref = ConstantVariables.EDIT_PREF;
 		
 		String username = pref.getString("username","guest");
+		String nama = pref.getString("nama","Guest");
 		String level = pref.getString("level","Guest");
 		Toast.makeText(this,"Selamat datang "+username+" ("+level+")",Toast.LENGTH_LONG).show();
 
@@ -66,6 +67,9 @@ implements NavigationView.OnNavigationItemSelectedListener{
 		}else if(level.equals(Level.PESERTA)){
 			navView.inflateMenu(R.menu.drawer_menu_peserta);	
 		}
+		MenuItem title = navView.getMenu().findItem(R.id.nav_menu_title);
+		title.setTitle(nama+" ("+level+")");
+		title.setEnabled(false);
 		setFragment(WelcomeFragment.class);
 		//onNavigationItemSelected(navView.getMenu().getItem(0).getSubMenu().getItem(0));
 	}

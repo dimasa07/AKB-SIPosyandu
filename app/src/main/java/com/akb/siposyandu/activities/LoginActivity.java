@@ -75,6 +75,7 @@ public class LoginActivity extends AppCompatActivity implements Button.OnClickLi
 				SharedPreferences.Editor editPref = ConstantVariables.EDIT_PREF;
 				editPref.putString("username", username);
 				editPref.putString("level", level.toString());
+				editPref.putString("nama", "Admin");
 				editPref.commit();
 				suksesLogin();
 			}else{
