@@ -179,7 +179,13 @@
 					android:layout_width="wrap_content"
 					android:orientation="horizontal"
 					android:padding="5dp">
-
+					<EditText
+						android:layout_height="wrap_content"
+						android:inputType="textMultiLine"
+						android:layout_width="wrap_content"
+						android:ems="15"
+						android:visibility="gone"
+						android:id="@+id/pendaftaran_edt_status"/>
 					<RadioGroup
 						android:layout_height="wrap_content"
 						android:layout_width="wrap_content"
@@ -235,7 +241,13 @@
 					android:layout_width="wrap_content"
 					android:orientation="horizontal"
 					android:padding="5dp">
-
+<EditText
+					android:layout_height="wrap_content"
+					android:inputType="textMultiLine"
+					android:layout_width="wrap_content"
+					android:ems="15"
+					android:visibility="gone"
+					android:id="@+id/pendaftaran_edt_goldarah"/>
 					<RadioGroup
 						android:layout_height="wrap_content"
 						android:layout_width="wrap_content"
@@ -299,7 +311,18 @@
 					android:orientation="horizontal"
 					android:padding="5dp"
 					android:gravity="left|center">
-
+				<EditText
+					android:layout_height="wrap_content"
+					android:inputType="textMultiLine"
+					android:layout_width="wrap_content"
+					android:ems="15"
+					android:visibility="gone"
+					android:id="@+id/pendaftaran_edt_tanggal"/>
+					<LinearLayout
+						android:layout_height="wrap_content"
+						android:layout_width="wrap_content"
+						android:orientation="horizontal"
+						android:id="@+id/pendaftaran_lay_tanggal">
 					<EditText
 						android:layout_height="wrap_content"
 						android:inputType="number"
@@ -335,7 +358,7 @@
 						android:ems="3"
 						android:hint="Tahun"
 						android:id="@+id/pendaftaran_tahun"/>
-
+</LinearLayout>
 				</LinearLayout>
 
 			</TableRow>

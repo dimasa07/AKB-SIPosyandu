@@ -20,10 +20,13 @@ public class EditPesertaFragment extends Fragment implements Button.OnClickListe
 	private TextView txtTitle;
 	private Button btnDaftar, btnKembali;
 	private EditText edtNik, edtNama, edtNamaSuami,edtNotel,edtAlamat,
-	edtTanggal,edtBulan,edtTahun,edtUsername,edtPassword,edtRePassword;
+	edtTanggal,edtBulan,edtTahun,edtUsername,edtPassword,edtRePassword,
+	edtStatus,edtGolDarah,edtTanggalLahir;
 	private RadioGroup rgStatus,rgGolDarah;
 	private TableRow rowUsername,rowPassword,rowRePassword;
 	private View root;
+	private String mode;
+	private LinearLayout layTgl;
 
 	public EditPesertaFragment(BerandaActivity activity){
 		this.activity = activity;
@@ -50,6 +53,9 @@ public class EditPesertaFragment extends Fragment implements Button.OnClickListe
 		edtUsername = view.findViewById(R.id.pendaftaran_username);
 		edtPassword =  view.findViewById(R.id.pendaftaran_password);
 		edtRePassword = view.findViewById(R.id.pendaftaran_repassword);
+		edtStatus = view.findViewById(R.id.pendaftaran_edt_status);
+		edtGolDarah = view.findViewById(R.id.pendaftaran_edt_goldarah);
+		edtTanggalLahir = view.findViewById(R.id.pendaftaran_edt_tanggal);
 		btnDaftar = view.findViewById(R.id.pendaftaran_daftar);
 		btnKembali = view.findViewById(R.id.pendaftaran_kembali);
 		rgStatus = view.findViewById(R.id.pendaftaran_rg_status);
@@ -57,11 +63,10 @@ public class EditPesertaFragment extends Fragment implements Button.OnClickListe
 		rowUsername = view.findViewById(R.id.pendaftaran_row_username);
 		rowPassword = view.findViewById(R.id.pendaftaran_row_password);
 		rowRePassword = view.findViewById(R.id.pendaftaran_row_repassword);
-
+		layTgl = view.findViewById(R.id.pendaftaran_lay_tanggal);
 		btnDaftar.setOnClickListener(this);
 		btnKembali.setOnClickListener(this);
 
-		txtTitle.setText("EDIT PROFIL");
 		btnDaftar.setText("SIMPAN");
 
 		edtNik.setEnabled(false);
@@ -79,9 +84,52 @@ public class EditPesertaFragment extends Fragment implements Button.OnClickListe
 			edtNamaSuami.setText(peserta.getNamaSuami());
 			edtNotel.setText(peserta.getNoTelepon());
 			edtAlamat.setText(peserta.getAlamat());
+
+			if(mode.equals("VIEW")){
+				edtNik.setEnabled(false);
+				edtNama.setEnabled(false);
+				edtNamaSuami.setEnabled(false);
+				edtNotel.setEnabled(false);
+				edtAlamat.setEnabled(false);
+				edtStatus.setEnabled(false);
+				edtGolDarah.setEnabled(false);
+				edtTanggalLahir.setEnabled(false);
+				layTgl.setVisibility(View.GONE);
+				edtStatus.setVisibility(View.VISIBLE);
+				edtGolDarah.setVisibility(View.VISIBLE);
+				edtTanggalLahir.setVisibility(View.VISIBLE);
+				rgStatus.setVisibility(View.GONE);
+				rgGolDarah.setVisibility(View.GONE);
+				btnDaftar.setVisibility(View.GONE);
+				edtStatus.setText(peserta.getStatus());
+				edtGolDarah.setText(peserta.getGolDarah());
+				edtTanggalLahir.setText(peserta.getTanggalLahir());
+				txtTitle.setText("PROFIL PESERTA");
+			}else{
+				edtNik.setEnabled(true);
+				edtNama.setEnabled(true);
+				edtNamaSuami.setEnabled(true);
+				edtNotel.setEnabled(true);
+				edtAlamat.setEnabled(true);
+				layTgl.setVisibility(View.VISIBLE);
+				rgStatus.setVisibility(View.VISIBLE);
+				rgGolDarah.setVisibility(View.VISIBLE);
+				btnDaftar.setVisibility(View.VISIBLE);
+				edtStatus.setVisibility(View.GONE);
+				edtGolDarah.setVisibility(View.GONE);
+				edtTanggalLahir.setVisibility(View.GONE);
+				txtTitle.setText("EDIT PROFIL");
+			}
 		}
 	}
 
+	@Override
+	public void onDetach(){
+		super.onDetach();
+		peserta = null;
+		mode = "";
+	}
+	
 	@Override
 	public void onClick(View p1){
 		switch(p1.getId()){
@@ -111,7 +159,11 @@ public class EditPesertaFragment extends Fragment implements Button.OnClickListe
 				}
 				break;
 			case R.id.pendaftaran_kembali:
-				activity.setFragment(ProfilPesertaFragment.class);
+				if(mode.equals("VIEW")){
+					activity.setFragment(DataPesertaFragment.class);
+				}else{
+					activity.setFragment(ProfilPesertaFragment.class);
+				}
 				break;
 		}
 	}
@@ -123,8 +175,8 @@ public class EditPesertaFragment extends Fragment implements Button.OnClickListe
 			.addBodyParameter("nama_suami", namaSuami)
 			.addBodyParameter("no_telepon", noTel)
 			.addBodyParameter("alamat", alamat)
-			.addBodyParameter("tanggal_lahir",tanggalLahir)
-			.addBodyParameter("gol_darah",golDarah)
+			.addBodyParameter("tanggal_lahir", tanggalLahir)
+			.addBodyParameter("gol_darah", golDarah)
 			.addBodyParameter("status", status)
 			.setPriority(Priority.MEDIUM)
 			.build()
@@ -153,8 +205,9 @@ public class EditPesertaFragment extends Fragment implements Button.OnClickListe
 			});
 	}
 
-	public void setPeserta(Peserta peserta){
+	public void setPeserta(Peserta peserta, String mode){
 		this.peserta = peserta;
+		this.mode = mode;
 	}
 
 }

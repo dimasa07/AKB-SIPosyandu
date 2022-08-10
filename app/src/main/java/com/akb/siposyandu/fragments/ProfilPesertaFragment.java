@@ -48,7 +48,7 @@ public class ProfilPesertaFragment extends Fragment
 
 				@Override
 				public void onClick(View p1){
-					((EditPesertaFragment)activity.fragments.get(EditPesertaFragment.class)).setPeserta(peserta);
+					((EditPesertaFragment)activity.fragments.get(EditPesertaFragment.class)).setPeserta(peserta,"EDIT");
 					activity.setFragment(EditPesertaFragment.class);
 				}
 			});

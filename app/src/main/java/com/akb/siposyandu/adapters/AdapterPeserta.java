@@ -100,10 +100,8 @@ public class AdapterPeserta extends RecyclerView.Adapter<AdapterPeserta.ViewHold
 	@Override
 	public void onClick(View p1){
 		int itemPosition = fragment.recyclerView.getChildAdapterPosition(p1);
-		Toast.makeText(
-			fragment.activity.getApplicationContext(),
-			dataList.get(itemPosition).getNama(),Toast.LENGTH_SHORT
-		).show();
+		((EditPesertaFragment)fragment.activity.fragments.get(EditPesertaFragment.class)).setPeserta((dataList.get(itemPosition)),"VIEW");
+		fragment.activity.setFragment(EditPesertaFragment.class);
 		
 	}
 
