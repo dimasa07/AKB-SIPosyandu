@@ -16,6 +16,10 @@
 					android:id="@+id/nav_admin_kegiatan"
 					android:icon="@mipmap/ic_launcher_round"
 					android:title="Kegiatan" />
+				<item
+					android:id="@+id/nav_peserta_riwayat"
+					android:icon="@mipmap/ic_launcher_round"
+					android:title="Riwayat" />
 				<!--<item
 					android:id="@+id/nav_peserta_ibuHamil"
 					android:icon="@mipmap/ic_launcher_round"

@@ -25,6 +25,7 @@ import android.app.AlertDialog;
 import android.support.v4.app.FragmentManager;
 import android.content.DialogInterface;
 import android.content.Intent;
+import com.akb.siposyandu.models.*;
 
 
 public class BerandaActivity extends AppCompatActivity 
@@ -118,6 +119,15 @@ implements NavigationView.OnNavigationItemSelectedListener{
 				break;
 			case R.id.nav_peserta_profil:
 				key =  ProfilPesertaFragment.class;
+				break;
+			case R.id.nav_peserta_riwayat:
+				String nik = ConstantVariables.APP_PREF.getString("id","");
+				String nama = ConstantVariables.APP_PREF.getString("nama","");
+				Peserta p = new Peserta();
+				p.setNik(nik);
+				p.setNama(nama);
+				((DataRiwayatFragment)fragments.get(DataRiwayatFragment.class)).setPeserta(p);
+				key = DataRiwayatFragment.class;
 				break;
 		}
 		

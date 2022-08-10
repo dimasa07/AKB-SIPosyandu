@@ -175,7 +175,7 @@ public class TambahKaderFragment extends Fragment implements View.OnClickListene
 		}
 	}
 
-	public void tambah(String nik, String nama, String noTel, String alamat, String jk, String status, String username, String password){
+	public void tambah(String nik, final String nama, String noTel, String alamat, String jk, String status, String username, String password){
 		String action  = "tambah_kader.php";
 		if(mode.equals("EDIT")){
 			action = "edit_kader.php";
@@ -207,6 +207,8 @@ public class TambahKaderFragment extends Fragment implements View.OnClickListene
 							}else if(level.equals("KADER")){
 								activity.setFragment(ProfilKaderFragment.class);
 							}
+							ConstantVariables.EDIT_PREF.putString("nama",nama);
+							ConstantVariables.EDIT_PREF.commit();
 						}
 					}catch(JSONException e){
 						Toast.makeText(activity.getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();

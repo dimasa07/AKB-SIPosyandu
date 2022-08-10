@@ -177,7 +177,7 @@ public class EditPesertaFragment extends Fragment implements Button.OnClickListe
 		}
 	}
 
-	private void simpan(String nik, String nama, String namaSuami, String noTel, String alamat, String tanggalLahir, String golDarah, String status){
+	private void simpan(String nik, final String nama, String namaSuami, String noTel, String alamat, String tanggalLahir, String golDarah, String status){
 		AndroidNetworking.post(ConstantVariables.API + "edit_peserta.php")
 			.addBodyParameter("nik_ibu", nik)
 			.addBodyParameter("nama", nama)
@@ -200,6 +200,8 @@ public class EditPesertaFragment extends Fragment implements Button.OnClickListe
 						Toast.makeText(activity.getApplicationContext(), message, Toast.LENGTH_LONG).show();
 						if(value == 1){
 							activity.setFragment(ProfilPesertaFragment.class);
+							ConstantVariables.EDIT_PREF.putString("nama",nama);
+							ConstantVariables.EDIT_PREF.commit();
 						}
 					}catch(JSONException e){
 						Toast.makeText(activity.getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();

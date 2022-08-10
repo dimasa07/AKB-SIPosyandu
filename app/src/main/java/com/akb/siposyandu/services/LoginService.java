@@ -58,6 +58,7 @@ public class LoginService implements JSONObjectRequestListener,JSONArrayRequestL
 		String message = "";
 		String username ="";
 		String password = "";
+		String nama ="";
 		String level = "";
 		String id = "";
 
@@ -68,11 +69,13 @@ public class LoginService implements JSONObjectRequestListener,JSONArrayRequestL
 				JSONObject value = jo.getJSONObject("value");
 				username = value.getString("username");
 				password = value.getString("password");
+				nama = value.getString("nama");
 				level = value.getString("level");
 				id = value.getString("id");
 				SharedPreferences.Editor editPref = ConstantVariables.EDIT_PREF;
 				editPref.putString("username",username);
 				editPref.putString("password",password);
+				editPref.putString("nama",nama);
 				editPref.putString("level",level);
 				editPref.putString("id",id);
 				editPref.commit();
