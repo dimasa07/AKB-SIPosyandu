@@ -47,7 +47,7 @@ implements NavigationView.OnNavigationItemSelectedListener{
 		String username = pref.getString("username","guest");
 		String nama = pref.getString("nama","Guest");
 		String level = pref.getString("level","Guest");
-		Toast.makeText(this,"Selamat datang "+username+" ("+level+")",Toast.LENGTH_LONG).show();
+		Toast.makeText(this,"Selamat datang "+nama+" ("+level+")",Toast.LENGTH_LONG).show();
 
 		Toolbar toolbar = findViewById(R.id.toolbar);
 		setSupportActionBar(toolbar);
@@ -84,6 +84,9 @@ implements NavigationView.OnNavigationItemSelectedListener{
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item){
 		switch(item.getItemId()){
+			case R.id.menu_item_pengaturan:
+				startActivity(new Intent(this,PengaturanActivity.class));
+				break;
 			case R.id.menu_item_logout:
 				AlertDialog.Builder alert = new AlertDialog.Builder(this);
 				alert.setTitle("Logout");

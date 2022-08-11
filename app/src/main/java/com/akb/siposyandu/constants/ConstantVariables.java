@@ -8,7 +8,7 @@ public class ConstantVariables
 {
 	public static final String LOG_TAG = "SIPosyandu";
 	public static final String APP_PREFERENCESS ="app_preferences";
-	public static final String API = "http://192.168.43.179/SIPosyandu/api/";
+	public static String API = "https://onschool-learning.000webhostapp.com/api/";
 	
 	public static SharedPreferences APP_PREF;
 	public static SharedPreferences.Editor EDIT_PREF;

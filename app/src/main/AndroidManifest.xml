@@ -27,6 +27,9 @@
 			<activity
 				android:name=".activities.BerandaActivity"
 				android:theme="@style/AppTheme"/>
+			<activity
+				android:name=".activities.PengaturanActivity"
+				android:theme="@style/AppTheme"/>
     </application>
 
 </manifest>

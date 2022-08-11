@@ -1,7 +1,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-	<!--<item
+	<item
 		android:id="@+id/menu_item_pengaturan"
-		android:title="Pengaturan"/>-->
+		android:title="Pengaturan"/>
 	<item
 		android:id="@+id/menu_item_logout"
 		android:title="Logout"/>
